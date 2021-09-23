@@ -15,8 +15,7 @@ database = SQLAlchemy(app)
 from routes.categoria_bp import categoria_bp
 
 
-
-
+from routes.entrada_bp import entrada_bp
 
 
 
@@ -25,8 +24,7 @@ app.register_blueprint(categoria_bp, url_prefix='/categoria')
 
 
 
-
-
+app.register_blueprint(entrada_bp, url_prefix='/entrada')
 
 
 @app.route("/")
