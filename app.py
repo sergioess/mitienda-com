@@ -15,15 +15,15 @@ database = SQLAlchemy(app)
 from routes.categoria_bp import categoria_bp
 
 
+from routes.usuario_bp import usuario_bp
 from routes.entrada_bp import entrada_bp
+
 
 
 
 #ACA REGISTRAMOS LAS RUTAS
 app.register_blueprint(categoria_bp, url_prefix='/categoria')
-
-
-
+app.register_blueprint(usuario_bp, url_prefix='/usuario')
 app.register_blueprint(entrada_bp, url_prefix='/entrada')
 
 
