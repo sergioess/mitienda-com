@@ -8,9 +8,9 @@ class Entrada(database.Model):
 
     id_entradas = database.Column(database.Integer, primary_key=True)
     precio = database.Column(database.Float, nullable=False)
-    #date = database.Column(database.date, nullable=False)
+    fecha = database.Column(database.Date, nullable=False)
     id_producto = database.Column(database.Integer, nullable=False)
-    #fecha_vencimiento = database.Column(database.date, nullable=True)
+    fecha_vencimiento = database.Column(database.Date, nullable=True)
     cantidad = database.Column(database.Float, nullable=False)
     proveedor = database.Column(database.String, nullable=True)
     id_tienda= database.Column(database.Integer, nullable=False)
