@@ -29,7 +29,12 @@ app.register_blueprint(entrada_bp, url_prefix='/entrada')
 
 @app.route("/")
 def hello():
-    return "Hello Login"
+    return "Hello HOME"
+
+
+@app.route("/login")
+def hello2():
+    return "Hello Login"    
 
 
 if __name__ == '__main__':

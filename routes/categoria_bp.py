@@ -7,7 +7,7 @@ categoria_bp = Blueprint(
 categoria_bp.route('/', methods=['GET'])(index)
 categoria_bp.route('/create', methods=['GET'])(create)
 categoria_bp.route('/store', methods=['POST'])(store)
-categoria_bp.route('/<int:clasificacion_id>', methods=['GET'])(show)
-categoria_bp.route('/update/<int:clasificacion_id>', methods=['PUT'])(update)
-categoria_bp.route('/destroy/<int:clasificacion_id>',
+categoria_bp.route('/<int:categoria_id>', methods=['GET'])(show)
+categoria_bp.route('/update', methods=['POST'])(update)
+categoria_bp.route('/destroy/<int:categoria_id>',
                    methods=['GET', 'POST', 'DELETE'])(destroy)

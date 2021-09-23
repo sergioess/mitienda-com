@@ -10,8 +10,8 @@ def index():
 
     for usuario in usuariosLista:
         print('' + str(usuario.id_usuario) + ' ' + usuario.nombre)
-
-    return "Hi everyone my friends"
+        print(usuario)
+    return str(usuariosLista)
 
 def store():
     pass
