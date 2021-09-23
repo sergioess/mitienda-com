@@ -2,7 +2,7 @@ from app import database
 
 
 class Producto(database.Model):
-
+# se identifica la tabla
     __tablename__ = 'productos'
 
     id = database.Column(database.Integer, primary_key=True)
