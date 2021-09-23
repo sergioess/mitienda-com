@@ -14,7 +14,7 @@ database = SQLAlchemy(app)
 #ACA LAS IMPORTACION DE LAS RUTAS
 from routes.categoria_bp import categoria_bp
 
-
+from routes.usuario_bp import usuario_bp
 
 
 
@@ -23,7 +23,7 @@ from routes.categoria_bp import categoria_bp
 #ACA REGISTRAMOS LAS RUTAS
 app.register_blueprint(categoria_bp, url_prefix='/categoria')
 
-
+app.register_blueprint(usuario_bp, url_prefix='/usuario')
 
 
 
