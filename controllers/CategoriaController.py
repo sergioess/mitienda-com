@@ -4,7 +4,8 @@ from flask import config, render_template, redirect, url_for, request, abort, fl
 
 from models.categoria import Categoria
 
-
+# app = Flask(__name__)
+# app.config.from_object('config')
 
 def index():
     categoriasLista = Categoria.get_all()
@@ -13,6 +14,8 @@ def index():
 
     for categoria in categoriasLista:
         print('' + str(categoria.id) + ' ' + categoria.nombre)
+
+    # print(app.config['SQLALCHEMY_DATABASE_URI'])
     return "Hola1"
 
 def store():
