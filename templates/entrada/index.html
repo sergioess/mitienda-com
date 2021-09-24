@@ -1,0 +1,56 @@
+{% include '/header.html' %}
+<div class="container">
+  <br />
+  <div class="row justify-content-center">
+    <h2>Entradas</h2>
+  </div>
+  <div class="border border-dark border-2 p-0">
+    <div class="card-header" style="background-color: #7F807A;">
+      <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
+        <i class="fas fa-plus-circle"></i> Nueva Entrada</a>
+      {% include '/entrada/modal/create.html' %}
+    </div>
+  
+    <table class="table table-light p-0 my-0">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Precio</td>
+          <td>Fecha</td>
+          <td>Fecha_vencimiento</td>
+          <td>Id_producto</td>
+          <td>Cantidad</td>
+          <td>Acciones</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for entrada in entradas %}
+        <tr>
+          <td>{{loop.index0 + 1}}</td>
+          
+          <td>{{entrada['precio']}}</td>
+          <td>{{entrada['fecha']}}</td>
+          <td>{{entrada['fecha_vencimiento']}}</td>
+          <td>{{entrada['id_producto']}}</td>
+          <td>{{entrada['cantidad']}}</td>
+          <td>
+            <a class="btn btn-warning btn-sm py-0" href="#"
+              data-toggle="modal"  data-target="#modaledit{{entrada['id_entradas']}}" >
+              <i class="far fa-edit"></i></a>
+            |
+            <a onclick="return confirm('Desea borrar la Entrada?')" class="btn btn-danger btn-sm py-0" href="/entrada/destroy/{{entrada['id_entradas']}}">            
+              <i class="far fa-trash-alt"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% for entrada in entradas %} 
+{% include '/entrada/modal/edit.html' %}
+{% endfor %}
+
+{% include '/footer.html' %}
