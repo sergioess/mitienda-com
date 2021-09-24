@@ -21,7 +21,13 @@ def index():
   
 
 def store():
-    pass
+    _id = request.form.get('txtId')
+    _nombre = request.form.get('txtNombre')
+    categoria = Categoria(_id,_nombre )
+    categoria.activo = 1
+    categoria.id_tienda = 1
+    Categoria.save(categoria)
+    return redirect('/categoria')
     
 def show():
     pass

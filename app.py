@@ -1,8 +1,6 @@
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template, url_for
-
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -10,14 +8,12 @@ from flask import send_from_directory
 
 database = SQLAlchemy(app)
 
-
 #ACA LAS IMPORTACION DE LAS RUTAS
 from routes.categoria_bp import categoria_bp
 from routes.producto_bp import producto_bp
 from routes.usuario_bp import usuario_bp
 from routes.entrada_bp import entrada_bp
 from routes.inicio_bp import inicio_bp
-
 
 
 #ACA REGISTRAMOS LAS RUTAS
