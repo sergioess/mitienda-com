@@ -6,12 +6,12 @@ from models.producto import Producto
 def index():
     productosLista = Producto.get_all()
     
-    print(type(productosLista))
+    # print(type(productosLista))
 
-    for producto in productosLista:
-        print('' + str(producto.id) + ' ' + producto.nombre)
+    # for producto in productosLista:
+    #     print('' + str(producto.id) + ' ' + producto.nombre)
 
-    return "Hi everyone"
+    return render_template('/producto/index.html', productos=productosLista)
 
 def store():
     pass
