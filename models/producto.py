@@ -12,7 +12,7 @@ class Producto(database.Model):
     precio_venta = database.Column(database.Float, nullable=False)
     imagen = database.Column(database.String, nullable=True)
     #id_tienda = database.Column(database.Integer, nullable=False)
-    categoria_id = database.Column(database.Integer, database.Foreignkey("categoria.id"))
+    # categoria_id = database.Column(database.Integer, database.Foreignkey("categoria.id"))
     activo = database.Column(database.Integer, nullable=False)
 
     @staticmethod
