@@ -1,12 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Bienvenido a Flask</h1>
-</body>
-</html>
+{% include '/header.html' %}
+
+    <div class="container col-md-5">
+        <div class="card card-widget rounded widget-user mt-5">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-info text-center py-4">
+              <h2 class="widget-user-username font-weight-bold">Mi Tienda</h2>
+              <h5 class="widget-user-desc">Datos de la Tienda</h5>
+            </div>
+            <div class="widget-user-image text-center my-5 ">
+                <img  width="200px" src="/img/store.png" alt="">
+            </div>
+            <div class="card-footer py-4">
+              <div class="row">
+                <div class="col-sm-6 border-right">
+                  <div class="description-block text-center">
+                    <img  width="100px" src="/img/products.png" alt="">
+                    <h5 class="description-header mt-2">3,200</h5>
+                    <span class="description-text">PRODUCTOS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6 border-right text-center">
+                  <div class="description-block text-center">
+                    <img  width="100px" src="/img/stand.png" alt="">
+                    <h5 class="description-header  mt-2">{{totalcategoria}}</h5>
+                    <span >CATEGORIAS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+    </div>
+    {% include '/footer.html' %}

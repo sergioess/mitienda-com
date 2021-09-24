@@ -6,7 +6,7 @@ from flask import render_template, url_for
 
 app = Flask(__name__)
 app.config.from_object('config')
-
+from flask import send_from_directory
 
 database = SQLAlchemy(app)
 
@@ -17,7 +17,7 @@ from routes.categoria_bp import categoria_bp
 
 from routes.usuario_bp import usuario_bp
 from routes.entrada_bp import entrada_bp
-
+from routes.inicio_bp import inicio_bp
 
 
 
@@ -26,11 +26,15 @@ app.register_blueprint(categoria_bp, url_prefix='/categoria')
 app.register_blueprint(usuario_bp, url_prefix='/usuario')
 app.register_blueprint(entrada_bp, url_prefix='/entrada')
 
+app.register_blueprint(inicio_bp, url_prefix='/')
+# @app.route("/")
+# def hello():
 
-@app.route("/")
-def hello():
-    return "Hello HOME"
+#     return render_template('/index.html')
 
+@app.route('/img/<nombreFoto>')
+def uplproductos(nombreFoto):
+    return send_from_directory(app.config['CARPETA_IMG'], nombreFoto)
 
 @app.route("/login")
 def hello2():

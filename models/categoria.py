@@ -12,6 +12,10 @@ class Categoria(database.Model):
     id_tienda = database.Column(database.Integer, nullable=False)
     activo = database.Column(database.Integer, nullable=False)
 
+    #este es el toString personalizado
+    def __str__(self):
+        return f"<Categoria {self.id} {self.nombre} {self.id_tienda} {self.activo} >"
+
     def __init__(self, id):
         self.id = id
 
@@ -25,6 +29,10 @@ class Categoria(database.Model):
     @staticmethod
     def get_all():
         return Categoria.query.all()
+
+    @staticmethod
+    def count_records():
+        return Categoria.query.count()      
 
     @staticmethod
     def get_all_activo():
