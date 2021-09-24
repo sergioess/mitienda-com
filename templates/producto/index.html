@@ -5,6 +5,7 @@
     <h2>Productos</h2>
   </div>
   <div class="border border-dark border-2 p-0">
+
     <div class="card-header" style="background-color: #7F807A;">
       <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
         <i class="fas fa-plus-circle"></i> Nuevo Producto</a>
@@ -47,7 +48,7 @@
   </div>
 </div>
 
-{% for producto in Productos %} 
+{% for producto in productos %} 
 {% include '/producto/modal/edit.html' %}
 {% endfor %}
 

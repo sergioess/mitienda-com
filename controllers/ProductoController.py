@@ -10,7 +10,6 @@ def index():
 
     #for producto in productosLista:
         #print('' + str(producto.id) + ' ' + producto.nombre)
-
     return render_template('/producto/index.html', productos=productosLista)
 
 def store():

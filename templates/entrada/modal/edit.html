@@ -1,27 +1,27 @@
 <form
   method="POST"
-  action="{{ url_for('categoria_bp.update') }}"
+  action="{{ url_for('entrada_bp.update') }}"
   enctype="multipart/form-data"
 >
   <input
     type="hidden"
     name="txtId"
     id="txtId"
-    value="{{categoria['id']}}"
+    value="{{entrada['id_entradas']}}"
   />
 
   <div
     class="modal fade"
-    id="modaledit{{categoria['id']}}"
+    id="modaledit{{entrada['id_entradas']}}"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="modaledit{{categoria['id']}}"
+    aria-labelledby="modaledit{{entrada['id_entradas']}}"
     aria-hidden="true"
   >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-tittle">Editar Categoria</h4>
+          <h4 class="modal-tittle">Editar Entrada</h4>
           <br />
 
           <button
@@ -36,20 +36,20 @@
 
         <div class="modal-body p-2">
           <div class="row justify-content-md-center">
-            <h5 class="text-center">{{categoria['nombre']}}</h5>
+            <h5 class="text-center">{{entrada['precio']}}</h5>
           </div>
 
           <div class="row mt-2">
             <div class="col-md">
-              <label for="txtNombre">Nombre</label>
+              <label for="txtPrecio">Precio</label>
             </div>
             <div class="col-md d-inline">
               <input
                 class="form-control d-inline"
                 type="text"
-                name="txtNombre"
-                id="txtNombre"
-                value="{{categoria['nombre']}}"
+                name="txtPrecio"
+                id="txtPrecio"
+                value="{{entrada['precio']}}"
                 required
               />
             </div>
@@ -58,7 +58,7 @@
 
         <div class="modal-footer">
           <div class="row p-2">
-            <input class="btn btn-success" type="submit" value="Actualizar" />
+            <input class="btn btn-success" type="submit" value="Agregar" />
           </div>
         </div>
       </div>
