@@ -31,6 +31,10 @@ class Producto(database.Model):
     def get_all():
         return Producto.query.all()
 
+    @staticmethod
+    def count_records():
+        return Producto.query.count()          
+
     def update(self):
         productoActualiza = Producto.query.filter_by(id=self.id).first()
         productoActualiza.nombre = self.nombre

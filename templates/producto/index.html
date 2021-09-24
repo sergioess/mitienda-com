@@ -6,7 +6,7 @@
   </div>
   <div class="border border-dark border-2 p-0">
 
-    <div class="card-header" style="background-color: #7F807A;">
+    <div class="card-header" style="background-color: #011f4b;">
       <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
         <i class="fas fa-plus-circle"></i> Nuevo Producto</a>
       {% include '/producto/modal/create.html' %}
@@ -25,7 +25,7 @@
       </thead>
 
       <tbody>
-        {% for producto in Productos %}
+        {% for producto in productos %}
         <tr>
           <td>{{loop.index0 + 1}}</td>
           
