@@ -1,42 +1,23 @@
-<form
-  method="POST"
-  action="{{ url_for('entrada_bp.update') }}"
-  enctype="multipart/form-data"
+<form method="POST" action="{{ url_for('entrada_bp.update') }}" enctype="multipart/form-data"
 >
-  <input
-    type="hidden"
-    name="txtId"
-    id="txtId"
-    value="{{entrada['id_entradas']}}"
-  />
+  <input type="hidden" name="txtId" id="txtId" value="{{entrada['id_entradas']}}" />
+  <input type="hidden" name="txtFecha" id="txtFecha" value="{{entrada['fecha']}}" />
 
-  <div
-    class="modal fade"
-    id="modaledit{{entrada['id_entradas']}}"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="modaledit{{entrada['id_entradas']}}"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modaledit{{entrada['id_entradas']}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{entrada['id_entradas']}}" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-tittle">Editar Entrada</h4>
           <br />
 
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Cerrar"
-          >
+          <button type="button"class="close"data-dismiss="modal"aria-label="Cerrar">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
         <div class="modal-body p-2">
           <div class="row justify-content-md-center">
-            <h5 class="text-center">{{entrada['precio']}}</h5>
+            <h5 class="text-center">{{entrada['id_producto']}}</h5>
           </div>
 
         
@@ -70,7 +51,7 @@
               <label for="txtFecha_Ven">Fecha Vencimiento</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtFecha_Ven" id="txtFecha_Ven" value="{{entrada['txtFecha_Ven']}}" required/>
+              <input class="form-control d-inline" type="text" name="txtFecha_Ven" id="txtFecha_Ven" value="{{entrada['fecha_vencimiento']}}" required/>
             </div>
           </div>
           <div class="row">
@@ -78,7 +59,7 @@
               <label for="txtProveedor">Proveedor</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtProveedor" id="txtProveedor" value="{{entrada['Proveedor']}}" required/>
+              <input class="form-control d-inline" type="text" name="txtProveedor" id="txtProveedor" value="{{entrada['proveedor']}}" required/>
             </div>
           </div>
         </div>

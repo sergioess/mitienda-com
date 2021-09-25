@@ -9,5 +9,4 @@ entrada_bp.route('/create', methods=['GET'])(create)
 entrada_bp.route('/store', methods=['POST'])(store)
 entrada_bp.route('/<int:entrada_id>', methods=['GET'])(show)
 entrada_bp.route('/update', methods=['POST'])(update)
-entrada_bp.route('/destroy/<int:entrada_id>',
-                   methods=['GET', 'POST', 'DELETE'])(destroy)
+entrada_bp.route('/destroy/<int:entrada_id>',methods=['GET', 'POST', 'DELETE'])(destroy)

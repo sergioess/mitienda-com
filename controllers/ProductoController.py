@@ -4,7 +4,7 @@ from flask import config, render_template, redirect, url_for, request, abort, fl
 from models.producto import Producto
 
 def index():
-    productosLista = Producto.get_all()
+    productosLista = Producto.get_all_activo()
     
     #print(type(productosLista))
 
@@ -31,15 +31,15 @@ def update():
     _referencia = request.form.get('txtReferencia')
     _costo = request.form.get('txtCosto')
     _precio_venta = request.form.get('txtPrecio_venta')
-    producto = Producto(_id,_nombre, _referencia, _costo, _precio_venta )
-    producto.update(producto)
+    producto = Producto(_nombre, _referencia, _costo, _precio_venta,1,0 )
+    producto.update(_id)
     return redirect('/producto')
 
 
 def destroy(producto_id):
     
-    producto = Producto(producto_id,'Elimina' )
-    producto.delete(producto)
+   
+    Producto.delete(producto_id)
     # producto.activo = 0
     # producto.save()
     return redirect('/producto')

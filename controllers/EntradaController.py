@@ -33,20 +33,23 @@ def show():
 
 def update():
     _id = request.form.get('txtId')
+    _id_producto = request.form.get('txtProducto')
     _precio = request.form.get('txtPrecio')
     _fecha = request.form.get('txtFecha')
-    _fecha_vencimiento = request.form.get('txtFecha_vencimiento')
+    _fecha_vencimiento = request.form.get('txtFecha_Ven')
     _cantidad = request.form.get('txtCantidad')
     _proveedor = request.form.get('txtProveedor')
-    entrada = Entrada(_id,_precio,_fecha,_fecha_vencimiento,_cantidad,_proveedor)
-    Entrada.update(entrada)
+    entrada = Entrada(_id_producto,_precio,_fecha,_fecha_vencimiento,_cantidad,_proveedor)
+    print(entrada)
+    entrada.update(_id)
     return redirect('/entrada')
 
 
 def destroy(entrada_id):
-    
+    print(entrada_id)
     entrada = Entrada(entrada_id, 0, "13/12/2021", "13/12/2021", 0, "eliminar")
-    Entrada.delete(entrada)
+    print(entrada)
+    entrada.delete()
     # entrada.activo = 0
     # entrada.save()
     return redirect('/entrada')

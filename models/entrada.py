@@ -44,8 +44,9 @@ class Entrada(database.Model):
     def get_by_id(id):
         return Entrada.query.filter_by(id_entradas=id).firts    
 
-    def update(self):
-        entradaActualiza = Entrada.query.filter_by(id_entradas=self.id).first()
+    def update(self, id):
+        entradaActualiza = Entrada.query.filter_by(id_entradas=id).first()
+        print(entradaActualiza)
         entradaActualiza.precio = self.precio
         entradaActualiza.fecha = self.fecha
         entradaActualiza.fecha_vencimiento = self.fecha_vencimiento
@@ -55,8 +56,8 @@ class Entrada(database.Model):
         return entradaActualiza
 
     def delete(self):
-        print(self.id_entradas)
-        entradaActualiza = Entrada.query.filter_by(id_entradas=self.id_entradas).first()
+        print(self.id_producto)
+        entradaActualiza = Entrada.query.filter_by(id_entradas=self.id_producto).first()
         print(entradaActualiza)
         #entradaActualiza.activo = 0
         database.session.delete(entradaActualiza)
