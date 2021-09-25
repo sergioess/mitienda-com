@@ -20,7 +20,7 @@
   >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style="background-color: #011f4b; color: white" >
           <h4 class="modal-tittle">Editar Usuario</h4>
           <br />
 
@@ -30,7 +30,7 @@
             data-dismiss="modal"
             aria-label="Cerrar"
           >
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true" style="color: white;" >&times;</span>
           </button>
         </div>
 
@@ -130,6 +130,7 @@
                 name="txtRol"
                 id="txtRol"
                 value="{{usuario['rol']}}"
+                readonly
                 required
               />
             </div>
@@ -139,7 +140,7 @@
 
         <div class="modal-footer">
           <div class="row p-2">
-            <input class="btn btn-success" type="submit" value="Actualizar" />
+            <input class="btn btn-success" style="background-color: #011f4b;" type="submit" value="Actualizar" />
           </div>
         </div>
       </div>
