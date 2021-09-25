@@ -1,25 +1,10 @@
-<form
-  method="POST"
-  action="{{ url_for('usuario_bp.store') }}"
-  enctype="multipart/form-data"
->
-  <div
-    class="modal fade text-left p-5"
-    id="modalcreate"
-    tabindex="-1"
-    role="dialog"
-    aria-hidden="true"
-  >
+<form method="POST" action="{{ url_for('usuario_bp.store') }}" enctype="multipart/form-data" >
+  <div class="modal fade text-left p-5" id="modalcreate" tabindex="-1" role="dialog" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #011f4b; color: white">
           <h4 class="modal-tittle">Nuevo Usuario</h4>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Cerrar"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" >
             <span aria-hidden="true" style="color: white;">&times;</span>
           </button>
         </div>
@@ -31,13 +16,7 @@
               <label for="txtNombre">Nombre</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtNombre"
-                id="txtNombre"
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" required />
             </div>
           </div>
 
@@ -47,13 +26,7 @@
               <label for="txtApellidos">Apellidos</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtApellidos"
-                id="txtApellidos"
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtApellidos" id="txtApellidos" required />
             </div>
           </div>
 
@@ -63,13 +36,7 @@
               <label for="txtCorreo">Correo</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="email"
-                name="txtCorreo"
-                id="txtCorreo"
-                required
-              />
+              <input class="form-control d-inline" type="email" name="txtCorreo" id="txtCorreo" required />
             </div>
           </div>
 
@@ -79,13 +46,7 @@
               <label for="txtNombre_usuario">Nombre de Usuario</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtNombre_usuario"
-                id="txtNombre_usuario"
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtNombre_usuario" id="txtNombre_usuario" required />
             </div>
           </div>
 
@@ -95,13 +56,7 @@
               <label for="txtPassword">Password</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="password"
-                name="txtPassword"
-                id="txtPassword"
-                required
-              />
+              <input class="form-control d-inline" type="password" name="txtPassword" id="txtPassword" required />
             </div>
           </div>
 
@@ -111,15 +66,7 @@
               <label for="txtRol">Rol</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtRol"
-                id="txtRol"
-                value="Tendero"
-                readonly
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtRol" id="txtRol" value="Tendero" readonly required />
             </div>
           </div>
 

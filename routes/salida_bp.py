@@ -9,5 +9,4 @@ salida_bp.route('/create', methods=['GET'])(create)
 salida_bp.route('/store', methods=['POST'])(store)
 salida_bp.route('/<int:salida_id>', methods=['GET'])(show)
 salida_bp.route('/update/<int:salida_id>', methods=['PUT'])(update)
-salida_bp.route('/destroy/<int:salida_id>',
-                   methods=['GET', 'POST', 'DELETE'])(destroy)
+salida_bp.route('/destroy/<int:salida_id>', methods=['GET', 'POST', 'DELETE'])(destroy)

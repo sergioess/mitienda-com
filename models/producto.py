@@ -1,6 +1,7 @@
 from app import database
 from sqlalchemy import asc, desc
 
+
 class Producto(database.Model):
 
     __tablename__ = 'productos'
@@ -24,10 +25,8 @@ class Producto(database.Model):
         self.activo = activo
         self.stock = stock
 
-
     def __str__(self):
         return f"<Producto {self.id} {self.nombre} {self.referencia} {self.costo} {self.precio_venta} {self.activo} {self.stock}>"
-
 
     @staticmethod
     def get_all():
@@ -35,12 +34,11 @@ class Producto(database.Model):
 
     @staticmethod
     def get_all_activo():
-        return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))   
-
+        return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
 
     @staticmethod
     def count_records():
-        return Producto.query.count()          
+        return Producto.query.count()
 
     def update(self, id):
         productoActualiza = Producto.query.filter_by(id=id).first()
@@ -53,9 +51,9 @@ class Producto(database.Model):
 
     @staticmethod
     def delete(id):
-        #print(self.id)
+        # print(self.id)
         productoActualiza = Producto.query.filter_by(id=id).first()
-        #print(productoActualiza)
+        # print(productoActualiza)
         productoActualiza.activo = 0
         database.session.commit()
         return 1
@@ -69,4 +67,4 @@ class Producto(database.Model):
         database.session.commit()
 
     def get_by_id(id):
-        return Producto.query.filter_by(id=id).firts       
+        return Producto.query.filter_by(id=id).firts

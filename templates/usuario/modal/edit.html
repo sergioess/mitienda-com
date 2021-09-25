@@ -1,35 +1,14 @@
-<form
-  method="POST"
-  action="{{ url_for('usuario_bp.update') }}"
-  enctype="multipart/form-data"
->
-  <input
-    type="hidden"
-    name="txtId"
-    id="txtId"
-    value="{{usuario['id_usuario']}}"
-  />
+<form method="POST" action="{{ url_for('usuario_bp.update') }}" enctype="multipart/form-data" >
+  <input type="hidden" name="txtId" id="txtId" value="{{usuario['id_usuario']}}" />
 
-  <div
-    class="modal fade"
-    id="modaledit{{usuario['id_usuario']}}"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="modaledit{{usuario['id_usuario']}}"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modaledit{{usuario['id_usuario']}}" tabindex="-1"  role="dialog" aria-labelledby="modaledit{{usuario['id_usuario']}}" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #011f4b; color: white" >
           <h4 class="modal-tittle">Editar Usuario</h4>
           <br />
 
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Cerrar"
-          >
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" >
             <span aria-hidden="true" style="color: white;" >&times;</span>
           </button>
         </div>
@@ -44,14 +23,7 @@
               <label for="txtNombre">Nombre</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtNombre"
-                id="txtNombre"
-                value="{{usuario['nombre']}}"
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" value="{{usuario['nombre']}}" required />
             </div>
           </div>
 
@@ -59,15 +31,8 @@
             <div class="col-md">
               <label for="txtApellidos">Apellidos</label>
             </div>
-            <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtApellidos"
-                id="txtApellidos"
-                value="{{usuario['apellidos']}}"
-                required
-              />
+            <div class="col-md d-inline"> 
+              <input class="form-control d-inline" type="text" name="txtApellidos" id="txtApellidos" value="{{usuario['apellidos']}}" required />
             </div>
           </div>
 
@@ -76,14 +41,7 @@
               <label for="txtCorreo">Correo</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="email"
-                name="txtCorreo"
-                id="txtCorreo"
-                value="{{usuario['correo']}}"
-                required
-              />
+              <input class="form-control d-inline" type="email" name="txtCorreo" id="txtCorreo" value="{{usuario['correo']}}" required />
             </div>
           </div>
 
@@ -92,14 +50,7 @@
               <label for="txtNombre_usuario">Nombre de Usuario</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtNombre_usuario"
-                id="txtNombre_usuario"
-                value="{{usuario['nombre_usuario']}}"
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtNombre_usuario" id="txtNombre_usuario" value="{{usuario['nombre_usuario']}}" required />
             </div>
           </div>
 
@@ -108,14 +59,7 @@
               <label for="txtPassword">Password</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="password"
-                name="txtPassword"
-                id="txtPassword"
-                value="{{usuario['password']}}"
-                required
-              />
+              <input class="form-control d-inline" type="password" name="txtPassword" id="txtPassword" value="{{usuario['password']}}" required />
             </div>
           </div>
 
@@ -124,15 +68,7 @@
               <label for="txtRol">Rol</label>
             </div>
             <div class="col-md d-inline">
-              <input
-                class="form-control d-inline"
-                type="text"
-                name="txtRol"
-                id="txtRol"
-                value="{{usuario['rol']}}"
-                readonly
-                required
-              />
+              <input class="form-control d-inline" type="text" name="txtRol" id="txtRol" value="{{usuario['rol']}}" readonly required/>
             </div>
           </div>
 

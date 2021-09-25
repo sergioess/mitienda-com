@@ -1,8 +1,4 @@
-<form
-  method="POST"
-  action="{{ url_for('producto_bp.update') }}"
-  enctype="multipart/form-data"
->
+<form method="POST" action="{{ url_for('producto_bp.update') }}" enctype="multipart/form-data" >
   <input type="hidden" name="txtId" id="txtId" value="{{producto['id']}}"/>
 
   <div class="modal fade" id="modaledit{{producto['id']}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{producto['id']}}" aria-hidden="true" >
