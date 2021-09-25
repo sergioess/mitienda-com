@@ -46,7 +46,7 @@ def update():
 
 
 def destroy(usuario_id_usuario):
-    usuario = Usuario(usuario_id_usuario)
+    usuario = Usuario(usuario_id_usuario, "Cesar", "Mendoza", "cesar@correo.com", "c24mendoza", "1234", "Tendero")
     Usuario.delete(usuario)
     # usuario.activo = 0
     # usuario.save()
