@@ -22,8 +22,8 @@ class Entrada(database.Model):
     
 
 
-    def __init__(self, id_entradas, precio, fecha, fecha_vencimento, cantidad, proveedor):
-        self.id_entradas = id_entradas
+    def __init__(self, id_producto, precio, fecha, fecha_vencimento, cantidad, proveedor):
+        self.id_producto = id_producto
         self.precio = precio
         self.fecha = fecha
         self.fecha_vencimiento = fecha_vencimento
@@ -62,3 +62,12 @@ class Entrada(database.Model):
         database.session.delete(entradaActualiza)
         database.session.commit()
         return 1  
+
+    def save(self):
+        self.total = float(self.cantidad) * float(self.precio)
+        self.id_tienda = 1
+        print (self)
+        database.session.add(self)
+        database.session.commit()
+
+
