@@ -1,7 +1,9 @@
 from flask import Flask
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
+from werkzeug import datastructures
 
 from models.entrada import Entrada
+from datetime import datetime
 
 def index():
     entradasLista = Entrada.get_all()
@@ -14,7 +16,17 @@ def index():
     return render_template('/entrada/index.html', entradas=entradasLista)
 
 def store():
-    pass
+    _id_producto = request.form.get('txtProducto')
+    _cantidad = request.form.get('txtCantidad')
+    _precio = request.form.get('txtPrecio')
+    _fecha_vencimiento = request.form.get('txtFecha_Ven')
+    _proveedor = request.form.get('txtProveedor')
+    date = datetime.now()
+
+    nuevaEntrada = Entrada(_id_producto, _precio, date, _fecha_vencimiento, _cantidad, _proveedor)
+    print (nuevaEntrada)
+    Entrada.save(nuevaEntrada)
+    return redirect('/entrada')
     
 def show():
     pass
