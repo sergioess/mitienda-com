@@ -7,7 +7,6 @@ usuario_bp = Blueprint(
 usuario_bp.route('/', methods=['GET'])(index)
 usuario_bp.route('/create', methods=['GET'])(create)
 usuario_bp.route('/store', methods=['POST'])(store)
-usuario_bp.route('/<int:clasificacion_id>', methods=['GET'])(show)
+usuario_bp.route('/<int:usuario_id_usuario>', methods=['GET'])(show)
 usuario_bp.route('/update', methods=['POST'])(update)
-usuario_bp.route('/destroy/<int:clasificacion_id>',
-                   methods=['GET', 'POST', 'DELETE'])(destroy)
+usuario_bp.route('/destroy/<int:usuario_id_usuario>', methods=['GET', 'POST', 'DELETE'])(destroy)
