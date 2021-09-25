@@ -1,29 +1,19 @@
 <form
   method="POST"
-  action="{{ url_for('categoria_bp.update') }}"
+  action="{{ url_for('producto_bp.store') }}"
   enctype="multipart/form-data"
 >
-  <input
-    type="hidden"
-    name="txtId"
-    id="txtId"
-    value="{{categoria['id']}}"
-  />
-
   <div
-    class="modal fade"
-    id="modaledit{{categoria['id']}}"
+    class="modal fade text-left p-5"
+    id="modalcreate"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="modaledit{{categoria['id']}}"
     aria-hidden="true"
   >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-tittle">Editar Categoria</h4>
-          <br />
-
+          <h4 class="modal-tittle">Nuevo Producto</h4>
           <button
             type="button"
             class="close"
@@ -35,11 +25,7 @@
         </div>
 
         <div class="modal-body p-2">
-          <div class="row justify-content-md-center">
-            <h5 class="text-center">{{categoria['nombre']}}</h5>
-          </div>
-
-          <div class="row mt-2">
+          <div class="row">
             <div class="col-md">
               <label for="txtNombre">Nombre</label>
             </div>
@@ -49,7 +35,6 @@
                 type="text"
                 name="txtNombre"
                 id="txtNombre"
-                value="{{categoria['nombre']}}"
                 required
               />
             </div>
@@ -58,7 +43,7 @@
 
         <div class="modal-footer">
           <div class="row p-2">
-            <input class="btn btn-success" type="submit" value="Actualizar" />
+            <input class="btn btn-success" type="submit" value="Agregar" />
           </div>
         </div>
       </div>

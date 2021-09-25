@@ -57,9 +57,9 @@ class Categoria(database.Model):
         return categoriaActualiza
 
     def delete(self):
-        print(self.id)
+        #print(self.id)
         categoriaActualiza = Categoria.query.filter_by(id=self.id).first()
-        print(categoriaActualiza)
+        #print(categoriaActualiza)
         categoriaActualiza.activo = 0
         database.session.commit()
         return 1

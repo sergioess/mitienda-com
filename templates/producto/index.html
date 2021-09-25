@@ -1,0 +1,55 @@
+{% include '/header.html' %}
+<div class="container">
+  <br />
+  <div class="row justify-content-center">
+    <h2>Productos</h2>
+  </div>
+  <div class="border border-dark border-2 p-0">
+
+    <div class="card-header" style="background-color: #011f4b;">
+      <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
+        <i class="fas fa-plus-circle"></i> Nuevo Producto</a>
+      {% include '/producto/modal/create.html' %}
+    </div>
+  
+    <table class="table table-light p-0 my-0">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Nombre</td>
+          <td>Referencia</td>
+          <td>Costo</td>
+          <td>Precio_venta</td>
+          <td>Acciones</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for producto in productos %}
+        <tr>
+          <td>{{loop.index0 + 1}}</td>
+          
+          <td>{{producto['nombre']}}</td>
+          <td>{{producto['referencia']}}</td>
+          <td>{{producto['costo']}}</td>
+          <td>{{producto['precio_venta']}}</td>
+          <td>
+            <a class="btn btn-warning btn-sm py-0" href="#"
+              data-toggle="modal"  data-target="#modaledit{{producto['id']}}" >
+              <i class="far fa-edit"></i></a>
+            |
+            <a onclick="return confirm('Desea borrar el producto?')" class="btn btn-danger btn-sm py-0" href="/producto/destroy/{{producto['id']}}">            
+              <i class="far fa-trash-alt"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% for producto in productos %} 
+{% include '/producto/modal/edit.html' %}
+{% endfor %}
+
+{% include '/footer.html' %}

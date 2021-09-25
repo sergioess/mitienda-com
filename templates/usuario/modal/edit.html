@@ -1,27 +1,27 @@
 <form
   method="POST"
-  action="{{ url_for('categoria_bp.update') }}"
+  action="{{ url_for('usuario_bp.update') }}"
   enctype="multipart/form-data"
 >
   <input
     type="hidden"
     name="txtId"
     id="txtId"
-    value="{{categoria['id']}}"
+    value="{{usuario['id_usuario']}}"
   />
 
   <div
     class="modal fade"
-    id="modaledit{{categoria['id']}}"
+    id="modaledit{{usuario['id_usuario']}}"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="modaledit{{categoria['id']}}"
+    aria-labelledby="modaledit{{usuario['id_usuario']}}"
     aria-hidden="true"
   >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-tittle">Editar Categoria</h4>
+          <h4 class="modal-tittle">Editar Usuario</h4>
           <br />
 
           <button
@@ -36,7 +36,7 @@
 
         <div class="modal-body p-2">
           <div class="row justify-content-md-center">
-            <h5 class="text-center">{{categoria['nombre']}}</h5>
+            <h5 class="text-center">{{usuario['nombre']}}</h5>
           </div>
 
           <div class="row mt-2">
@@ -49,7 +49,7 @@
                 type="text"
                 name="txtNombre"
                 id="txtNombre"
-                value="{{categoria['nombre']}}"
+                value="{{usuario['nombre']}}"
                 required
               />
             </div>
