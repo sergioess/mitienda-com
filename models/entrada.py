@@ -46,11 +46,11 @@ class Entrada(database.Model):
 
     def update(self):
         entradaActualiza = Entrada.query.filter_by(id_entradas=self.id).first()
-        entradaActualiza.nombre = self.precio
-        entradaActualiza.nombre = self.fecha
-        entradaActualiza.nombre = self.fecha_vencimiento
-        entradaActualiza.nombre = self.cantidad
-        entradaActualiza.nombre = self.proveedor
+        entradaActualiza.precio = self.precio
+        entradaActualiza.fecha = self.fecha
+        entradaActualiza.fecha_vencimiento = self.fecha_vencimiento
+        entradaActualiza.cantidad = self.cantidad
+        entradaActualiza.proveedor = self.proveedor
         database.session.commit()
         return entradaActualiza
 
