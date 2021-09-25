@@ -36,7 +36,7 @@
 
         <div class="modal-body p-2">
           <div class="row justify-content-md-center">
-            <h5 class="text-center">{{usuario['nombre']}}</h5>
+            <h5 class="text-center">{{usuario['nombre']}} {{usuario['apellidos']}}</h5>
           </div>
 
           <div class="row mt-2">
@@ -54,6 +54,87 @@
               />
             </div>
           </div>
+
+          <div class="row mt-2">
+            <div class="col-md">
+              <label for="txtApellidos">Apellidos</label>
+            </div>
+            <div class="col-md d-inline">
+              <input
+                class="form-control d-inline"
+                type="text"
+                name="txtApellidos"
+                id="txtApellidos"
+                value="{{usuario['apellidos']}}"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md">
+              <label for="txtCorreo">Correo</label>
+            </div>
+            <div class="col-md d-inline">
+              <input
+                class="form-control d-inline"
+                type="email"
+                name="txtCorreo"
+                id="txtCorreo"
+                value="{{usuario['correo']}}"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md">
+              <label for="txtNombre_usuario">Nombre de Usuario</label>
+            </div>
+            <div class="col-md d-inline">
+              <input
+                class="form-control d-inline"
+                type="text"
+                name="txtNombre_usuario"
+                id="txtNombre_usuario"
+                value="{{usuario['nombre_usuario']}}"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md">
+              <label for="txtPassword">Password</label>
+            </div>
+            <div class="col-md d-inline">
+              <input
+                class="form-control d-inline"
+                type="password"
+                name="txtPassword"
+                id="txtPassword"
+                value="{{usuario['password']}}"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md">
+              <label for="txtRol">Rol</label>
+            </div>
+            <div class="col-md d-inline">
+              <input
+                class="form-control d-inline"
+                type="text"
+                name="txtRol"
+                id="txtRol"
+                value="{{usuario['rol']}}"
+                required
+              />
+            </div>
+          </div>
+
         </div>
 
         <div class="modal-footer">

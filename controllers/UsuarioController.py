@@ -15,7 +15,19 @@ def index():
     return render_template('/usuario/index.html', usuarios=usuariosLista)
 
 def store():
-    pass
+    _id_usuario = request.form.get('txtId')
+    _nombre = request.form.get('txtNombre')
+    _apellidos = request.form.get('txtApellidos')
+    _correo = request.form.get('txtCorreo')
+    _nombre_usuario = request.form.get('txtNombre_usuario')
+    _password = request.form.get('txtPassword')
+    _rol = request.form.get('txtRol')
+    usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
+    usuario.activo = 1
+    usuario.id_tienda = 1
+    Usuario.save(usuario)
+    return redirect('/usuario')
+
     
 def show():
     pass
@@ -28,13 +40,13 @@ def update():
     _nombre_usuario = request.form.get('txtNombre_usuario')
     _password = request.form.get('txtPassword')
     _rol = request.form.get('txtRol')
-    usuario = Usuario(_id_usuario,_nombre )
+    usuario = Usuario(_id_usuario, _nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
     Usuario.update(usuario)
     return redirect('/usuario')
 
 
-def destroy(usuario_id):
-    usuario = Usuario(usuario_id,'Elimina' )
+def destroy(usuario_id_usuario):
+    usuario = Usuario(usuario_id_usuario)
     Usuario.delete(usuario)
     # usuario.activo = 0
     # usuario.save()
