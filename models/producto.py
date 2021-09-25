@@ -11,9 +11,13 @@ class Producto(database.Model):
     costo = database.Column(database.Float, nullable=False)
     precio_venta = database.Column(database.Float, nullable=False)
     imagen = database.Column(database.String, nullable=True)
-    # tienda_id = database.Column(database.Integer, nullable=False)
-    # categoria_id = database.Column(database.Integer, database.Foreignkey("Producto.id"))
+    #tienda_id = database.Column(database.Integer, database.Foreignkey("tienda.id"))
+    #categoria_id = database.Column(database.Integer, database.Foreignkey("categoria.id"))
     activo = database.Column(database.Integer, nullable=False)
+    stock = database.Column(database.Float, nullable=False)
+
+    def __str__(self):
+        return f"<Producto {self.id} {self.nombre} {self.referencia} {self.costo} {self.precio_venta} {self.activo} {self.stock}>"
 
     def __init__(self, id):
         self.id = id
@@ -24,6 +28,8 @@ class Producto(database.Model):
         self.referencia = referencia
         self.costo = costo
         self.precio_venta = precio_venta
+        self.activo = activo
+        self.stock = stock
     
     @staticmethod
     def get_all():
@@ -39,6 +45,7 @@ class Producto(database.Model):
         productoActualiza.referencia = self.referencia
         productoActualiza.costo = self.costo
         productoActualiza.precio_venta = self.precio_venta
+        productoActualiza.stock = self.stock
         database.session.commit()
         return productoActualiza
 
@@ -50,7 +57,13 @@ class Producto(database.Model):
         database.session.commit()
         return 1
 
-
+    def save(self):
+        self.categoria_id = 2
+        self.tienda_id = 1
+        self.imagen = ""
+        print(self)
+        database.session.add(self)
+        database.session.commit()
 
     def get_by_id(id):
         return Producto.query.filter_by(id=id).firts       
