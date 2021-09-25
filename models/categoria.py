@@ -11,7 +11,7 @@ class Categoria(database.Model):
     nombre = database.Column(database.String(100), nullable=False)
     id_tienda = database.Column(database.Integer, nullable=False)
     activo = database.Column(database.Integer, nullable=False)
-    productos = database.relationship("producto", backref = "categoria", lazy = True)
+    # productos = database.relationship("producto", backref = "categoria", lazy = True)
     #este es el toString personalizado
     def __str__(self):
         return f"<Categoria {self.id} {self.nombre} {self.id_tienda} {self.activo} >"

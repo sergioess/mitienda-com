@@ -18,8 +18,6 @@ class Producto(database.Model):
     def __init__(self, id):
         self.id = id
 
-
-
     def __init__(self, id, nombre, referencia, costo, precio_venta):
         self.id = id
         self.nombre = nombre
