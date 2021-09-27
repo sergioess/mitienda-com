@@ -2,8 +2,7 @@ from flask import Blueprint
 
 from controllers.ProductoController import index, store, show, update, destroy, create
 
-producto_bp = Blueprint(
-    'producto_bp', __name__, template_folder='templates/producto')
+producto_bp = Blueprint('producto_bp', __name__, template_folder='templates/producto')
 producto_bp.route('/', methods=['GET'])(index)
 producto_bp.route('/create', methods=['GET'])(create)
 producto_bp.route('/store', methods=['POST'])(store)

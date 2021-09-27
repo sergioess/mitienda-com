@@ -2,8 +2,7 @@ from flask import Blueprint
 
 from controllers.UsuarioController import index, store, show, update, destroy, create
 
-usuario_bp = Blueprint(
-    'usuario_bp', __name__, template_folder='templates/usuario')
+usuario_bp = Blueprint('usuario_bp', __name__, template_folder='templates/usuario')
 usuario_bp.route('/', methods=['GET'])(index)
 usuario_bp.route('/create', methods=['GET'])(create)
 usuario_bp.route('/store', methods=['POST'])(store)

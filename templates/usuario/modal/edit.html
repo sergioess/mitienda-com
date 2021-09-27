@@ -1,7 +1,7 @@
 <form method="POST" action="{{ url_for('usuario_bp.update') }}" enctype="multipart/form-data" >
-  <input type="hidden" name="txtId" id="txtId" value="{{usuario['id_usuario']}}" />
+  <input type="hidden" name="txtId" id="txtId" value="{{usuario['id']}}" />
 
-  <div class="modal fade" id="modaledit{{usuario['id_usuario']}}" tabindex="-1"  role="dialog" aria-labelledby="modaledit{{usuario['id_usuario']}}" aria-hidden="true" >
+  <div class="modal fade" id="modaledit{{usuario['id']}}" tabindex="-1"  role="dialog" aria-labelledby="modaledit{{usuario['id']}}" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #011f4b; color: white" >

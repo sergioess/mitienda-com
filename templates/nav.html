@@ -1,0 +1,36 @@
+</head>
+
+<body style="background-color: #b3cde0">
+    <nav class=" navbar navbar-expand-lg navbar-light shadow-md sticky-top text-dark " style="background-color: #03396c"> 
+      <h3> <a class="nav-link text-light pr-1 font-weight-bold" href="{{ url_for('inicio_bp.index') }}" tabindex="-1" aria-disabled="true" >Mi tienda</a > </h3> 
+      <button class="navbar-toggler mb-md-1" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation" > 
+        <span class="navbar-toggler-icon"></span> 
+      </button> 
+      <div id="my-nav" class="collapse navbar-collapse"> 
+        <ul class="navbar-nav mr-auto"> 
+          <div class="row rounded bg-dark ml-3 d-flex mb-md-1">
+  
+          </div>
+          <div class="row rounded ml-3 mb-md-1"> 
+            <li class="nav-item col"> 
+              <a class="nav-link pr-1" href="{{ url_for('producto_bp.index') }}" tabindex="-1" aria-disabled="true" style="color: #fffff4" >Productos</a > 
+            </li>
+            <li class="nav-item col"> 
+              <a class="nav-link pr-1" href="{{ url_for('categoria_bp.index') }}" tabindex="-1" aria-disabled="true" style="color: #fffff4" >Categorias</a >
+            </li> 
+            <li class="nav-item col"> 
+              <a class="nav-link pr-1" href="{{ url_for('entrada_bp.index') }}" tabindex="-1" aria-disabled="true" style="color: #fffff4" >Entradas</a > 
+            </li> 
+            <li class="nav-item col"> 
+              <a class="nav-link pr-1" href="{{ url_for('salida_bp.index') }}" tabindex="-1" aria-disabled="true" style="color: #fffff4" >Salidas</a > 
+            </li>           
+            <li class="nav-item col"> 
+              <a class="nav-link pr-1" href="{{ url_for('usuario_bp.index') }}" tabindex="-1" aria-disabled="true" style="color: #fffff4" >Usuarios</a > 
+            </li> 
+          </div> 
+          <div class="row rounded bg-info ml-3 d-flex mb-md-1">
+  
+          </div> 
+        </ul> 
+      </div>
+    </nav>

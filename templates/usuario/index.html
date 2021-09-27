@@ -1,4 +1,5 @@
 {% include '/header.html' %}
+{% include '/nav.html' %}
 <div class="container">
   <br />
   <div class="row justify-content-center">
@@ -10,44 +11,47 @@
         <i class="fas fa-plus-circle"></i> Nuevo Usuario</a>
       {% include '/usuario/modal/create.html' %}
     </div>
-  
-    <table class="table table-light p-0 my-0">
-      <thead>
-        <tr>
-          <td>#</td>
-          <td>Nombre</td>
-          <td>Apellidos</td>
-          <td>Correo</td>
-          <td>Nombre Usuario</td>
-          <td>Password</td>
-          <td>Rol</td>
-          <td>Acciones</td>
-        </tr>
-      </thead>
+    <div class="table-responsive bg-white container pt-2">
 
-      <tbody>
-        {% for usuario in usuarios %}
-        <tr>
-          <td>{{loop.index0 + 1}}</td>
-          
-          <td>{{usuario['nombre']}}</td>
-          <td>{{usuario['apellidos']}}</td>
-          <td>{{usuario['correo']}}</td>
-          <td>{{usuario['nombre_usuario']}}</td>
-          <td>{{usuario['password']}}</td>
-          <td>{{usuario['rol']}}</td>
-          <td>
-            <a class="btn btn-warning btn-sm py-0" href="#"
-              data-toggle="modal"  data-target="#modaledit{{usuario['id_usuario']}}" >
-              <i class="far fa-edit"></i></a>
-            |
-            <a onclick="return confirm('Desea borrar el Usuario?')" class="btn btn-danger btn-sm py-0" href="/usuario/destroy/{{usuario['id_usuario']}}">            
-              <i class="far fa-trash-alt"></i></a>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    
+      <table class="table table-light p-0 my-0 " id="example">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td>Correo</td>
+            <td>Nombre Usuario</td>
+            <td>Password</td>
+            <td>Rol</td>
+            <td>Acciones</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for usuario in usuarios %}
+          <tr>
+            <td>{{loop.index0 + 1}}</td>
+            
+            <td>{{usuario['nombre']}}</td>
+            <td>{{usuario['apellidos']}}</td>
+            <td>{{usuario['correo']}}</td>
+            <td>{{usuario['nombre_usuario']}}</td>
+            <td>{{usuario['password']}}</td>
+            <td>{{usuario['rol']}}</td>
+            <td>
+              <a class="btn btn-warning btn-sm py-0" href="#"
+                data-toggle="modal"  data-target="#modaledit{{usuario['id']}}" >
+                <i class="far fa-edit"></i></a>
+              |
+              <a onclick="return confirm('Desea borrar el Usuario?')" class="btn btn-danger btn-sm py-0" href="/usuario/destroy/{{usuario['id']}}">            
+                <i class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
