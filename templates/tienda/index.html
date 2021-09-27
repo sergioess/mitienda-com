@@ -1,0 +1,55 @@
+{% include '/header.html' %}
+<div class="container">
+  <br />
+  <div class="row justify-content-center">
+    <h2>Tiendas</h2>
+  </div>
+  <div class="border border-dark p-0">
+    <div class="card-header" style="background-color: #011f4b;">
+      <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
+        <i class="fas fa-plus-circle"></i> Nueva Categoria</a>
+      <!-- {% include '/categoria/modal/create.html' %} -->
+    </div>
+    <div class="table-responsive">
+      <table class="table table-light p-0 my-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Nit</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Propietario</th>
+            <th>Ciudad</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for tienda in tiendas %}
+          <tr>
+            <td>{{loop.index0 + 1}}</td>
+            
+            <td>{{tienda['nombre_tienda']}}</td>
+            <td>{{tienda['nit']}}</td>
+            <td>{{tienda['direccion']}}</td>
+            <td>{{tienda['telefono']}}</td>
+            <td>{{tienda['nombre_propietario']}}</td>
+            <td>{{tienda['ciudad']}}</td>
+            <td>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>  
+  </div>
+  <br>
+  <br>
+</div>
+
+<!-- {% for categoria in categorias %} 
+{% include '/categoria/modal/edit.html' %}
+{% endfor %} -->
+
+{% include '/footer.html' %}
