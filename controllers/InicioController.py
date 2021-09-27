@@ -9,7 +9,10 @@ from models.producto import Producto
 # app = Flask(__name__)
 # app.config.from_object('config')
 
-def index():
+def home():
     categoriasTotal = Categoria.count_records()
     productosTotal = Producto.count_records()
-    return render_template('/index.html', totalcategoria=categoriasTotal, totalproducto=productosTotal)
+    return render_template('/home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal)
+
+def index():
+    return render_template('/index.html')
