@@ -1,0 +1,55 @@
+<form method="POST" action="{{ url_for('salida_bp.update') }}" enctype="multipart/form-data" >
+  <input type="hidden" name="txtId" id="txtId" value="{{salida.Salida.id_salidas}}" />
+  <input type="hidden" name="txtFecha" id="txtFecha" value="{{salida.Salida.fecha}}" />
+
+  <div class="modal fade" id="modaledit{{salida.Salida.id_salidas}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{salida.Salida.id_salidas}}" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-tittle">Editar Salida</h4>
+          <br />
+
+          <button type="button"class="close"data-dismiss="modal"aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        
+        <div class="modal-body p-2">
+          <div class="row">
+            <div class="col-md">
+              <label for="txtProducto">Producto</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtProducto" id="txtProducto" value="{{salida.Producto.nombre}}" readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtCantidad">Cantidad</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtCantidad" id="txtCantidad"  value="{{salida.Salida.cantidad}}"required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtPrecio">Precio Unitario</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtPrecio" id="txtPrecio" value="{{salida.Salida.precio_unit}}" required/>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+          <div class="row p-2">
+            <input class="btn btn-success" type="submit" value="Agregar" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

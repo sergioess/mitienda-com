@@ -2,8 +2,7 @@ from flask import Blueprint
 
 from controllers.CategoriaController import index, store, show, update, destroy, create
 
-categoria_bp = Blueprint(
-    'categoria_bp', __name__, template_folder='templates/categoria')
+categoria_bp = Blueprint('categoria_bp', __name__, template_folder='templates/categoria')
 categoria_bp.route('/', methods=['GET'])(index)
 categoria_bp.route('/create', methods=['GET'])(create)
 categoria_bp.route('/store', methods=['POST'])(store)

@@ -2,8 +2,7 @@ from flask import Blueprint
 
 from controllers.EntradaController import index, store, show, update, destroy, create
 
-entrada_bp = Blueprint(
-    'entrada_bp', __name__, template_folder='templates/entrada')
+entrada_bp = Blueprint('entrada_bp', __name__, template_folder='templates/entrada')
 entrada_bp.route('/', methods=['GET'])(index)
 entrada_bp.route('/create', methods=['GET'])(create)
 entrada_bp.route('/store', methods=['POST'])(store)
