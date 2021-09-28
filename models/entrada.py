@@ -1,5 +1,9 @@
 from datetime import date
 from app import database
+from models.producto import Producto
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+
 
 
 class Entrada(database.Model):
@@ -9,13 +13,17 @@ class Entrada(database.Model):
     id_entradas = database.Column(database.Integer, primary_key=True)
     precio = database.Column(database.Float, nullable=False)
     fecha = database.Column(database.Date, nullable=False)
-    id_producto = database.Column(database.Integer, nullable=False)
+    id_producto = database.Column(database.Integer, ForeignKey("productos.id"))
+    #id_producto = database.Column(database.Integer, nullable=False)
     fecha_vencimiento = database.Column(database.Date, nullable=True)
     cantidad = database.Column(database.Float, nullable=False)
     proveedor = database.Column(database.String, nullable=True)
     id_tienda= database.Column(database.Integer, nullable=False)
     total = database.Column(database.Float, nullable=False)
-
+   
+    
+    producto_entrada = database.relationship("Producto", backref='productos.nombre', lazy='joined')  
+    
     def __str__(self):
         return f"<Entrada {self.id_entradas} {self.precio} {self.proveedor} {self.cantidad} >"
 
@@ -38,15 +46,26 @@ class Entrada(database.Model):
 
     @staticmethod
     def get_all():
-        return Entrada.query.all()
+        entradas = database.session.query(Entrada,Producto).join(Producto).all()
+        # sergios = Salida.query.all()
+
+        # for sergio in salidas:
+        #     print(sergio)
+        #     print(sergio.Salida.id_salidas, sergio.Producto.nombre)
+        return entradas
+        # return database.query(Salida).join(Producto).all()
+
 
 
     def get_by_id(id):
         return Entrada.query.filter_by(id_entradas=id).firts    
 
+
+
     def update(self, id):
         entradaActualiza = Entrada.query.filter_by(id_entradas=id).first()
         print(entradaActualiza)
+
         entradaActualiza.precio = self.precio
         entradaActualiza.fecha = self.fecha
         entradaActualiza.fecha_vencimiento = self.fecha_vencimiento
