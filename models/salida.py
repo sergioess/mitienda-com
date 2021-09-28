@@ -31,7 +31,7 @@ class Salida(database.Model):
 
     @staticmethod
     def get_all():
-        salidas = database.session.query(Salida,Producto).join(Producto).all()
+        salidas = database.session.query(Salida.Producto).join(Producto).all()
         # sergios = Salida.query.all()
 
         # for sergio in salidas:

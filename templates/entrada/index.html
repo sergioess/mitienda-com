@@ -16,12 +16,12 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Precio</th>
-            <th>Fecha</th>
-            <th>Fecha_vencimiento</th>
-            <th>Id_producto</th>
-            <th>Cantidad</th>
-            <th>Acciones</th>
+            <th class="text-center">Precio</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Fecha_vencimiento</th>
+            <th class="text-center">Producto</th>
+            <th class="text-center">Cantidad</th>
+            <th class="text-center">Acciones</th>
           </tr>
         </thead>
 
@@ -29,13 +29,15 @@
           {% for entrada in entradas %}
           <tr>
             <td>{{loop.index0 + 1}}</td>
+            <td>{{entrada.Producto.nombre}}</td>
+            <td>{{entrada.Entrada.fecha}}</td>  
+            <td class="text-center">{{entrada['precio']}}</td>
+            <td class="text-center">{{entrada['fecha']}}</td>
+            <td class="text-center">{{entrada['fecha_vencimiento']}}</td>
+            <td class="text-center">{{entrada['id_producto']}}</td>
+            <td class="text-center">{{entrada['cantidad']}}</td>
             
-            <td>{{entrada['precio']}}</td>
-            <td>{{entrada['fecha']}}</td>
-            <td>{{entrada['fecha_vencimiento']}}</td>
-            <td>{{entrada['id_producto']}}</td>
-            <td>{{entrada['cantidad']}}</td>
-            <td>
+            <td class="text-center">
               <a class="btn btn-warning btn-sm py-0" href="#"
                 data-toggle="modal"  data-target="#modaledit{{entrada['id_entradas']}}" >
                 <i class="far fa-edit"></i></a>
@@ -52,7 +54,10 @@
 </div>
 
 {% for entrada in entradas %} 
-{% include '/entrada/modal/edit.html' %}
+  {% include '/entrada/modal/edit.html' %}
 {% endfor %}
+
+{% include '/entrada/scripts.html' %}
+
 
 {% include '/footer.html' %}
