@@ -1,5 +1,5 @@
 {% include '/header.html' %}
-{% include '/nav.html' %}
+{% include '/nav2.html' %}
 <div class="container">
   <br />
   <div class="row justify-content-center">
@@ -16,11 +16,12 @@
         <thead>
           <tr>
             <th>#</th>
-            <th class="text-center">Precio</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Fecha_vencimiento</th>
             <th class="text-center">Producto</th>
             <th class="text-center">Cantidad</th>
+            <th class="text-center">Precio</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Fecha_vencimiento</th>
             <th class="text-center">Acciones</th>
           </tr>
         </thead>
@@ -30,12 +31,12 @@
           <tr>
             <td>{{loop.index0 + 1}}</td>
             <td>{{entrada.Producto.nombre}}</td>
-            <td>{{entrada.Entrada.fecha}}</td>  
-            <td class="text-center">{{entrada['precio']}}</td>
-            <td class="text-center">{{entrada['fecha']}}</td>
-            <td class="text-center">{{entrada['fecha_vencimiento']}}</td>
-            <td class="text-center">{{entrada['id_producto']}}</td>
-            <td class="text-center">{{entrada['cantidad']}}</td>
+            <td class="text-right">{{entrada.Entrada.cantidad}}</td>  
+            <td class="text-right">{{entrada.Entrada.precio}}</td>
+            <td class="text-right">{{entrada.Entrada.total}}</td>
+            <td class="text-center">{{entrada.Entrada.fecha}}</td>
+            <td class="text-center">{{entrada.Entrada.fecha_vencimiento}}</td>
+
             
             <td class="text-center">
               <a class="btn btn-warning btn-sm py-0" href="#"
@@ -58,6 +59,4 @@
 {% endfor %}
 
 {% include '/entrada/scripts.html' %}
-
-
 {% include '/footer.html' %}

@@ -16,7 +16,7 @@ class Salida(database.Model):
     id_tienda= database.Column(database.Integer, nullable=False)
     id_producto = database.Column(database.Integer, ForeignKey("productos.id"))
     
-    producto_salida = database.relationship("Producto", backref='productos.nombre', lazy='joined')
+    producto_salida = database.relationship("Producto", backref='productos.id', lazy='joined')
 
     def __init__(self, id_producto, precio_unit, fecha, cantidad):
         self.id_producto = id_producto
@@ -31,7 +31,7 @@ class Salida(database.Model):
 
     @staticmethod
     def get_all():
-        salidas = database.session.query(Salida.Producto).join(Producto).all()
+        salidas = database.session.query(Salida,Producto).join(Producto).all()
         # sergios = Salida.query.all()
 
         # for sergio in salidas:
@@ -48,6 +48,7 @@ class Salida(database.Model):
     def get_by_id(id):
         return Salida.query.filter_by(id_salidas=id).firts    
 
+    @staticmethod
     def update(self, id):
         nuevaCantidad = self.cantidad
         salidaActualiza = Salida.query.filter_by(id_salidas=id).first()
@@ -71,6 +72,7 @@ class Salida(database.Model):
 
         return salidaActualiza
 
+    @staticmethod
     def delete(self):
         # print(self.id_producto)
         salidaActualiza = Salida.query.filter_by(id_salidas=self.id_producto).first()
@@ -82,7 +84,7 @@ class Salida(database.Model):
         prorductoActualiza.stock = prorductoActualiza.stock + salidaActualiza.cantidad
         database.session.commit()
         
-
+    @staticmethod
     def save(self):
         self.precio_total = float(self.cantidad) * float(self.precio_unit)
         self.id_tienda = 1

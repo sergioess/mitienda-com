@@ -3,18 +3,23 @@ from flask import config, render_template, redirect, url_for, request, abort, fl
 from werkzeug import datastructures
 
 from models.entrada import Entrada
+from models.producto import Producto
 from datetime import datetime
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+# @login_required
 def index():
     entradasLista = Entrada.get_all()
-    
+    productosLista = Producto.get_all_activo()
     #print(type(entradasLista))
 
     #for entrada in entradasLista:
         #print('' + str(entrada.id_entradas) + ' ' + str(entrada.precio))
 
-    return render_template('/entrada/index.html', entradas=entradasLista)
+    return render_template('/entrada/index.html', entradas=entradasLista, productos=productosLista)
 
+# @login_required
 def store():
     _id_producto = request.form.get('txtProducto')
     _cantidad = request.form.get('txtCantidad')
@@ -31,6 +36,7 @@ def store():
 def show():
     pass
 
+@login_required
 def update():
     _id = request.form.get('txtId')
     _id_producto = request.form.get('txtProducto')

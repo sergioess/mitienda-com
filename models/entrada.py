@@ -3,6 +3,7 @@ from app import database
 from models.producto import Producto
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy import asc, desc
 
 
 
@@ -46,7 +47,7 @@ class Entrada(database.Model):
 
     @staticmethod
     def get_all():
-        entradas = database.session.query(Entrada,Producto).join(Producto).all()
+        entradas = database.session.query(Entrada,Producto).join(Producto).order_by(asc(Entrada.id_entradas)).all()
         # sergios = Salida.query.all()
 
         # for sergio in salidas:
@@ -65,7 +66,7 @@ class Entrada(database.Model):
     def update(self, id):
         entradaActualiza = Entrada.query.filter_by(id_entradas=id).first()
         print(entradaActualiza)
-
+        entradaActualiza.total = float(self.cantidad) * float(self.precio)
         entradaActualiza.precio = self.precio
         entradaActualiza.fecha = self.fecha
         entradaActualiza.fecha_vencimiento = self.fecha_vencimiento

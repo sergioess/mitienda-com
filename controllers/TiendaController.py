@@ -4,9 +4,12 @@ from flask import config, render_template, redirect, url_for, request, abort, fl
 from sqlalchemy import desc
 from models.tienda import Tienda
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
 # app = Flask(__name__)
 # app.config.from_object('config')
 
+@login_required
 def index():
     tiendasLista = Tienda.get_all()
  
