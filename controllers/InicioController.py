@@ -12,7 +12,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 app = Flask(__name__)
 app.config.from_object('config')
 
-@login_required
+# @login_required
 def home():
     categoriasTotal = Categoria.count_records()
     productosTotal = Producto.count_records()
@@ -25,7 +25,7 @@ def frmlogin():
     return render_template('/login.html')    
 
 
-@login_required
+# @login_required
 def logout():
     logout_user()
     return render_template('index.html') 
