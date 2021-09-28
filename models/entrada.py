@@ -45,7 +45,7 @@ class Entrada(database.Model):
         return Entrada.query.filter_by(id_entradas=id).firts    
 
     def update(self):
-        entradaActualiza = Entrada.query.filter_by(id_entradas=self.id).first()
+        entradaActualiza = Entrada.query.filter_by(id_entradas=self.id_entradas).first()
         entradaActualiza.precio = self.precio
         entradaActualiza.fecha = self.fecha
         entradaActualiza.fecha_vencimiento = self.fecha_vencimiento
