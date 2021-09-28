@@ -4,10 +4,13 @@ from flask import config, render_template, redirect, url_for, request, abort, fl
 from sqlalchemy import desc
 from models.categoria import Categoria
 from models.producto import Producto
+from models.usuario import Usuario
+
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 
-# app = Flask(__name__)
-# app.config.from_object('config')
+app = Flask(__name__)
+app.config.from_object('config')
 
 def home():
     categoriasTotal = Categoria.count_records()
@@ -19,3 +22,19 @@ def index():
 
 def frmlogin():
     return render_template('/login.html')    
+
+
+@login_required
+def logout():
+    logout_user()
+    return render_template('index.html') 
+    #return 'You are now logged out!'    
+
+def login():
+    _nombre = request.form.get('txtNombre')
+    print(_nombre)
+    user = Usuario.query.filter_by(nombre_usuario=_nombre).first()
+    print(user)
+    login_user(user)
+    return render_template('home.html') 
+    #return 'You are now logged in!'       

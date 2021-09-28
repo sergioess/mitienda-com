@@ -20,21 +20,27 @@
 
 
             </div>
-            <br>
+
             <div class="card">
                 <div class="card-header">
-                    <form>
+                    <form method="POST" action="{{ url_for('inicio_bp.login') }}">
                       
 
-                            <div class="row ">
-                              <div class="col-sm-12 col-md-6 ">
-                                <input class="form-control " type="text" name="txtNombre" id="txtNombre" required placeholder="Nombre de Usuario"/>
-                              </div>
-                
-                                <div class="col-sm-12 col-md-6">
-                                  <input class="form-control " type="password" name="txtNombre" id="txtNombre" required placeholder="Contraseña"/>
-                                </div>
-                            </div>                      
+                        <div class="row ">
+                          <div class="col-sm-12 col-md-6 ">
+                            <input class="form-control " type="text" name="txtNombre" id="txtNombre" required placeholder="Nombre de Usuario"/>
+                          </div>
+            
+                            <div class="col-sm-12 col-md-6">
+                              <input class="form-control " type="password" name="txtPassword" id="txtPassword" required placeholder="Contraseña"/>
+                            </div>
+                        </div>                      
+
+                        <div class="col-12 text-center mt-3">
+      
+
+                            <button type="submit" class="btn btn-primary col-sm-12 col-md-6" data-dismiss="modal" aria-label="Cerrar" >Iniciar Sesion</button>
+                      </div>
 
                     </form>
                 </div>
@@ -42,11 +48,7 @@
 
                 <br>
                 
-                <div class="col-12 text-center">
-                    <a class="btn btn-primary col-sm-12 col-md-6" href="{{ url_for('inicio_bp.home') }}" tabindex="-1" aria-disabled="true" >
-                         Iniciar Sesion
-                      </a >
-                </div>
+
                 <br>
 
 

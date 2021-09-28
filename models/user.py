@@ -1,10 +1,9 @@
 
 from app import database
 from sqlalchemy import asc, desc
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 
-class Usuario(UserMixin,database.Model):
+class User(database.Model):
 
     __tablename__ = 'usuarios'
 
@@ -17,13 +16,12 @@ class Usuario(UserMixin,database.Model):
     id_tienda = database.Column(database.Integer, nullable=False)
     activo = database.Column(database.Integer, nullable=False)
     rol = database.Column(database.String(30), nullable=False)
-    is_active = database.Column(database.Boolean, nullable=True)
 
     # rolid = database.Column(database.Integer, database.ForeignKey(rol.id))
 
 #este es el toString personalizado
     def __str__(self):
-        return f"<Usuario {self.id} {self.nombre} {self.apellidos} {self.correo} {self.nombre_usuario} {self.password} {self.id_tienda} {self.activo} {self.rol} >"
+        return f"<User {self.id} {self.nombre} {self.apellidos} {self.correo} {self.nombre_usuario} {self.password} {self.id_tienda} {self.activo} {self.rol} >"
 
     def __init__(self, id):
             self.id = id
@@ -41,18 +39,18 @@ class Usuario(UserMixin,database.Model):
 
     @staticmethod
     def get_all():
-        return Usuario.query.all()
+        return User.query.all()
 
     @staticmethod
     def count_records():
-        return Usuario.query.count()      
+        return User.query.count()      
 
     @staticmethod
     def get_all_activo():
-        return Usuario.query.filter_by(activo=1).order_by(asc(Usuario.id))   
+        return User.query.filter_by(activo=1).order_by(asc(User.id))   
 
     def get_by_id(id):
-        return Usuario.query.filter_by(id=id).firts
+        return User.query.filter_by(id=id).firts
     
     def save(self):
         if not self.id:
@@ -61,20 +59,20 @@ class Usuario(UserMixin,database.Model):
 
 
     def update(self):
-        usuarioActualiza = Usuario.query.filter_by(id=self.id).first()
-        usuarioActualiza.nombre = self.nombre
-        usuarioActualiza.apellidos = self.apellidos
-        usuarioActualiza.correo = self.correo
-        usuarioActualiza.nombre_usuario = self.nombre_usuario
-        usuarioActualiza.password = self.password
-        usuarioActualiza.rol = self.rol
+        UserActualiza = User.query.filter_by(id=self.id).first()
+        UserActualiza.nombre = self.nombre
+        UserActualiza.apellidos = self.apellidos
+        UserActualiza.correo = self.correo
+        UserActualiza.nombre_usuario = self.nombre_usuario
+        UserActualiza.password = self.password
+        UserActualiza.rol = self.rol
         database.session.commit()
-        return usuarioActualiza
+        return UserActualiza
 
     def delete(self):
         #print(self.id)
-        usuarioActualiza = Usuario.query.filter_by(id=self.id).first()
+        UserActualiza = User.query.filter_by(id=self.id).first()
         #print(categoriaActualiza)
-        usuarioActualiza.activo = 0
+        UserActualiza.activo = 0
         database.session.commit()
         return 1    
