@@ -16,3 +16,6 @@ def home():
 
 def index():
     return render_template('/index.html')
+
+def frmlogin():
+    return render_template('/login.html')    
