@@ -1,29 +1,54 @@
 from flask import Flask
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
+from werkzeug import datastructures
 
 from models.salida import Salida
+from models.producto import Producto
+from datetime import datetime
 
 def index():
     salidasLista = Salida.get_all()
-    
-    print(type(salidasLista))
-
-    for salida in salidasLista:
-        print('' + str(salida.id_salidas) + ' ' + str(salida.precio_unit))
-
-    return "Hi everyone"
+    productosLista = Producto.get_all_activo()
+    return render_template('/salida/index.html', salidas=salidasLista, productos=productosLista)
 
 def store():
-    pass
+    _id_producto = request.form.get('txtProducto')
+    if (int(_id_producto) >= 1 ):
+        _cantidad = request.form.get('txtCantidad')
+        _precio = request.form.get('txtPrecio')
+        date = datetime.now()
+
+        nuevaSalida = Salida(_id_producto, _precio, date, _cantidad)
+        #print (nuevaSalida)
+        nuevaSalida.save()
+    return redirect('/salida')
+
+    
     
 def show():
     pass
 
 def update():
-    pass
+    _id = request.form.get('txtId')
+    _id_producto = request.form.get('txtProducto')
+    _precio_unit = request.form.get('txtPrecio')
+    _fecha = request.form.get('txtFecha')
+    _cantidad = request.form.get('txtCantidad')
+    salida = Salida(_id_producto,_precio_unit,_fecha,_cantidad)
+    # print(salida)
+    salida.update(_id)
+    return redirect('/salida')
 
-def destroy():
-    pass
+
+def destroy(salida_id):
+    print(salida_id)
+    salida = Salida(salida_id, 10, "13/12/2021", 0)
+    print(salida)
+    salida.delete()
+    # Salida.activo = 0
+    # Salida.save()
+    return redirect('/salida')
     
 def create():
     pass
+

@@ -1,4 +1,5 @@
 {% include '/header.html' %}
+{% include '/nav.html' %}
 <div class="container">
   <br />
   <div class="row justify-content-center">
@@ -10,8 +11,8 @@
         <i class="fas fa-plus-circle"></i> Nueva Entrada</a>
       {% include '/entrada/modal/create.html' %}
     </div>
-    <div class="table-responsive">
-      <table class="table table-light p-0 my-0">
+    <div class="table-responsive bg-white container pt-2">
+      <table class="table table-light p-0 my-0"  id="example">
         <thead>
           <tr>
             <th>#</th>

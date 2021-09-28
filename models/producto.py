@@ -1,4 +1,5 @@
 from app import database
+from sqlalchemy import asc, desc
 
 
 class Producto(database.Model):
@@ -11,32 +12,36 @@ class Producto(database.Model):
     costo = database.Column(database.Float, nullable=False)
     precio_venta = database.Column(database.Float, nullable=False)
     imagen = database.Column(database.String, nullable=True)
-    # tienda_id = database.Column(database.Integer, nullable=False)
-    # categoria_id = database.Column(database.Integer, database.Foreignkey("Producto.id"))
+    tienda_id = database.Column(database.Integer, nullable=False)
+    categoria_id = database.Column(database.Integer, nullable=False)
     activo = database.Column(database.Integer, nullable=False)
+    stock = database.Column(database.Float, nullable=False)
 
-    def __init__(self, id):
-        self.id = id
-
-
-
-    def __init__(self, id, nombre, referencia, costo, precio_venta):
-        self.id = id
+    def __init__(self, nombre: str, referencia: str, costo, precio_venta, activo: int, stock):
         self.nombre = nombre
         self.referencia = referencia
         self.costo = costo
         self.precio_venta = precio_venta
-    
+        self.activo = activo
+        self.stock = stock
+
+    def __str__(self):
+        return f"<Producto {self.id} {self.nombre} {self.referencia} {self.costo} {self.precio_venta} {self.activo} {self.stock}>"
+
     @staticmethod
     def get_all():
         return Producto.query.all()
 
     @staticmethod
-    def count_records():
-        return Producto.query.count()          
+    def get_all_activo():
+        return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
 
-    def update(self):
-        productoActualiza = Producto.query.filter_by(id=self.id).first()
+    @staticmethod
+    def count_records():
+        return Producto.query.count()
+
+    def update(self, id):
+        productoActualiza = Producto.query.filter_by(id=id).first()
         productoActualiza.nombre = self.nombre
         productoActualiza.referencia = self.referencia
         productoActualiza.costo = self.costo
@@ -44,15 +49,22 @@ class Producto(database.Model):
         database.session.commit()
         return productoActualiza
 
-    def delete(self):
-        #print(self.id)
-        productoActualiza = Producto.query.filter_by(id=self.id).first()
-        #print(productoActualiza)
+    @staticmethod
+    def delete(id):
+        # print(self.id)
+        productoActualiza = Producto.query.filter_by(id=id).first()
+        # print(productoActualiza)
         productoActualiza.activo = 0
         database.session.commit()
         return 1
 
-
+    def save(self):
+        self.categoria_id = 2
+        self.tienda_id = 1
+        self.imagen = ""
+        print(self)
+        database.session.add(self)
+        database.session.commit()
 
     def get_by_id(id):
-        return Producto.query.filter_by(id=id).firts       
+        return Producto.query.filter_by(id=id).firts

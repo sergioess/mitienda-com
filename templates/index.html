@@ -1,6 +1,8 @@
 {% include '/header.html' %}
+</head>
 
-    <div class="container col-md-5">
+<body style="background-color: hsl(205, 42%, 79%)">
+    <div class="container col-md-7">
         <div class="card card-widget rounded widget-user mt-5">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-info text-center py-4">
@@ -11,23 +13,27 @@
                 <img  width="200px" src="/img/store.png" alt="">
             </div>
             <div class="card-footer py-4">
-              <div class="row">
-                <div class="col-sm-6 border-right">
-                  <div class="description-block text-center">
-                    <img  width="100px" src="/img/products.png" alt="">
-                    <h5 class="description-header mt-2">{{totalproducto}}</h5>
-                    <span class="description-text">PRODUCTOS</span>
-                  </div>
-                  <!-- /.description-block -->
+              <div class="row justify-content-center">
+                <div class="col-sm-6 col-lg-4 p-0">
+                 
+                    
+                    <a class="nav-link" href="{{ url_for('inicio_bp.frmlogin') }}" tabindex="-1" aria-disabled="true"  >
+                      <span class="description-text btn btn-primary w-100">Iniciar Sesion</span>
+                    </a > 
+                   
+                  
+                  
                 </div>
-                <!-- /.col -->
-                <div class="col-sm-6 border-right text-center">
-                  <div class="description-block text-center">
-                    <img  width="100px" src="/img/stand.png" alt="">
-                    <h5 class="description-header  mt-2">{{totalcategoria}}</h5>
-                    <span >CATEGORIAS</span>
-                  </div>
-                  <!-- /.description-block -->
+                
+                <div class="col-sm-6  col-lg-4 p-0">
+                  
+                  <a class="nav-link" href="{{ url_for('inicio_bp.frmlogin') }}" tabindex="-1" aria-disabled="true"  >
+                    <span class="description-text btn btn-secondary w-100">Registrarse</span>
+                  </a > 
+                    
+
+                  
+                  
                 </div>
                 
               </div>
