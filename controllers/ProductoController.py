@@ -31,7 +31,8 @@ def update():
     _referencia = request.form.get('txtReferencia')
     _costo = request.form.get('txtCosto')
     _precio_venta = request.form.get('txtPrecio_venta')
-    producto = Producto(_nombre, _referencia, _costo, _precio_venta,1,0 )
+    _categoria = request.form.get('txtCategoria')
+    producto = Producto(_nombre, _referencia, _costo, _precio_venta,1,0, _categoria )
     producto.update(_id)
     return redirect('/producto')
 

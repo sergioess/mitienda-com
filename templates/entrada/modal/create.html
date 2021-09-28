@@ -21,8 +21,8 @@
                 <option value=0>Seleccion</option>
                   {% for producto in productos %}
                 
-                    <option value="{{producto['id']}}" data-price="{{producto['precio_venta']}}"
-                        data-tokens="{{producto['id']}}">{{producto['nombre']}}</option>
+                    <option value="{{producto.Producto.id}}" data-price="{{producto.Producto.precio_venta}}"
+                        data-tokens="{{producto.Producto.id}}">{{producto.Producto.nombre}}</option>
                   {% endfor %}
               </select>
               

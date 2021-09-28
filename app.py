@@ -32,10 +32,7 @@ app.register_blueprint(salida_bp, url_prefix='/salida')
 app.register_blueprint(tienda_bp, url_prefix='/tienda')
 
 app.register_blueprint(inicio_bp, url_prefix='/')
-# @app.route("/")
-# def hello():
 
-#     return render_template('/index.html')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -48,10 +45,6 @@ def load_user(id):
 @app.route('/img/<nombreFoto>')
 def uplproductos(nombreFoto):
     return send_from_directory(app.config['CARPETA_IMG'], nombreFoto)
-
-# @app.route("/login")
-# def hello2():
-#     return "Hello Login"    
 
 
 if __name__ == '__main__':

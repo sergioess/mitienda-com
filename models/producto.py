@@ -3,6 +3,7 @@ from sqlalchemy import asc, desc
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from models.categoria import Categoria
+from sqlalchemy import asc, desc
 
 class Producto(database.Model):
 
@@ -33,23 +34,23 @@ class Producto(database.Model):
 
     # método to string  (de python)
     def __str__(self):
-        return f"<Producto {self.id} {self.nombre} {self.referencia} {self.costo} {self.precio_venta} {self.activo} {self.stock} {self.categoria_id}>"
+        return f"<Producto {self.id} {self.nombre} {self.referencia} {self.costo} {self.precio_venta} {self.activo} {self.stock} {self.categoria_id} >"
 
     @staticmethod
     def get_all():
-        productos = database.session.query(Producto, Categoria).join(Categoria).all()
+        productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
         return productos
 
     # con este obtenemos toda la info que hay
-    @staticmethod
-    def get_all():
-        return Producto.query.all()
+    # @staticmethod
+    # def get_all():
+    #     return Producto.query.all()
 
     # con este se filtra la información para hacer una búsqueda
     @staticmethod
     def get_all_activo():
         #return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
-        productos = database.session.query(Producto, Categoria).join(Categoria).all()
+        productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
         return productos
 
     # con este se hace un conteo de productos

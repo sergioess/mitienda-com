@@ -64,8 +64,10 @@ class Entrada(database.Model):
 
 
     def update(self, id):
+        nuevaCantidad = self.cantidad
         entradaActualiza = Entrada.query.filter_by(id_entradas=id).first()
-        print(entradaActualiza)
+        # print(entradaActualiza)
+        antiguaCantidad = entradaActualiza.cantidad
         entradaActualiza.total = float(self.cantidad) * float(self.precio)
         entradaActualiza.precio = self.precio
         entradaActualiza.fecha = self.fecha
@@ -73,22 +75,39 @@ class Entrada(database.Model):
         entradaActualiza.cantidad = self.cantidad
         entradaActualiza.proveedor = self.proveedor
         database.session.commit()
+
+        prorductoActualiza = Producto.query.filter_by(id=entradaActualiza.id_producto).first()
+        prorductoActualiza.stock = float(prorductoActualiza.stock) - float(antiguaCantidad)
+        database.session.commit()
+
+
+        prorductoActualiza.stock = float(prorductoActualiza.stock) + float(nuevaCantidad)
+        database.session.commit()
+
         return entradaActualiza
 
     def delete(self):
         print(self.id_producto)
         entradaActualiza = Entrada.query.filter_by(id_entradas=self.id_producto).first()
-        print(entradaActualiza)
-        #entradaActualiza.activo = 0
+        # print(entradaActualiza)
+
         database.session.delete(entradaActualiza)
         database.session.commit()
-        return 1  
+
+        prorductoActualiza = Producto.query.filter_by(id=entradaActualiza.id_producto).first()
+        prorductoActualiza.stock = prorductoActualiza.stock - entradaActualiza.cantidad
+        database.session.commit()
+        
 
     def save(self):
         self.total = float(self.cantidad) * float(self.precio)
         self.id_tienda = 1
         print (self)
         database.session.add(self)
+        database.session.commit()
+        
+        prorductoActualiza = Producto.query.filter_by(id=self.id_producto).first()
+        prorductoActualiza.stock = prorductoActualiza.stock + self.cantidad
         database.session.commit()
 
 

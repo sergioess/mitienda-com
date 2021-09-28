@@ -36,7 +36,7 @@ def store():
 def show():
     pass
 
-@login_required
+# @login_required
 def update():
     _id = request.form.get('txtId')
     _id_producto = request.form.get('txtProducto')

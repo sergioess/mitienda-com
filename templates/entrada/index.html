@@ -28,25 +28,25 @@
 
         <tbody>
           {% for entrada in entradas %}
-          <tr>
-            <td>{{loop.index0 + 1}}</td>
-            <td>{{entrada.Producto.nombre}}</td>
-            <td class="text-right">{{entrada.Entrada.cantidad}}</td>  
-            <td class="text-right">{{entrada.Entrada.precio}}</td>
-            <td class="text-right">{{entrada.Entrada.total}}</td>
-            <td class="text-center">{{entrada.Entrada.fecha}}</td>
-            <td class="text-center">{{entrada.Entrada.fecha_vencimiento}}</td>
+            <tr>
+              <td>{{loop.index0 + 1}}</td>
+              <td>{{entrada.Producto.nombre}}</td>
+              <td class="text-right">{{entrada.Entrada.cantidad}}</td>  
+              <td class="text-right">{{entrada.Entrada.precio}}</td>
+              <td class="text-right">{{entrada.Entrada.total}}</td>
+              <td class="text-center">{{entrada.Entrada.fecha}}</td>
+              <td class="text-center">{{entrada.Entrada.fecha_vencimiento}}</td>
 
-            
-            <td class="text-center">
-              <a class="btn btn-warning btn-sm py-0" href="#"
-                data-toggle="modal"  data-target="#modaledit{{entrada['id_entradas']}}" >
-                <i class="far fa-edit"></i></a>
-              |
-              <a onclick="return confirm('Desea borrar la Entrada?')" class="btn btn-danger btn-sm py-0" href="/entrada/destroy/{{entrada['id_entradas']}}">            
-                <i class="far fa-trash-alt"></i></a>
-            </td>
-          </tr>
+              
+              <td class="text-center">
+                <a class="btn btn-warning btn-sm py-0" href="#"
+                  data-toggle="modal"  data-target="#modaledit{{entrada.Entrada.id_entradas}}" >
+                  <i class="far fa-edit"></i></a>
+                |
+                <a onclick="return confirm('Desea borrar la Entrada?')" class="btn btn-danger btn-sm py-0" href="/entrada/destroy/{{entrada.Entrada.id_entradas}}">            
+                  <i class="far fa-trash-alt"></i></a>
+              </td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
