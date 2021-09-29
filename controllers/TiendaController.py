@@ -17,12 +17,14 @@ def index():
   
 
 def store():
-    _id = request.form.get('txtId')
-    _nombre = request.form.get('txtNombre')
-    tienda = Tienda(_id,_nombre )
-    tienda.activo = 1
-    tienda.id_tienda = 1
-    tienda.save(tienda)
+    nombre_tienda = request.form.get('txtTienda')
+    nit = request.form.get('txtNit')
+    direccion = request.form.get('txtDireccion')
+    telefono = request.form.get('txtTelefono')
+    propietario = request.form.get('txtPropietario')
+    ciudad = request.form.get('txtCiudad')
+    nuevaTienda = Tienda(nombre_tienda, nit, direccion, telefono, propietario, ciudad)
+    Tienda.save(nuevaTienda)
     return redirect('/tienda')
     
 def show():
@@ -30,9 +32,12 @@ def show():
 
 
 def update():
-    _id = request.form.get('txtId')
-    _nombre = request.form.get('txtNombre')
-    tienda = Tienda(_id,_nombre )
+    tienda = request.form.get('txtTienda')
+    nit = request.form.get('txtNit')
+    direccion = request.form.get('txtDireccion')
+    telefono = request.form.get('txtTelefono')
+    propietario = request.form.get('txtPropietario')
+    ciudad = request.form.get('txtCiudad')
     Tienda.update(tienda)
     return redirect('/tienda')
 
