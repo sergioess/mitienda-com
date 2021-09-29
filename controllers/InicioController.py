@@ -6,6 +6,7 @@ from sqlalchemy import desc
 from models.categoria import Categoria
 from models.producto import Producto
 from models.usuario import Usuario
+from models.tienda import Tienda
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from forms import LoginForm
@@ -67,5 +68,11 @@ def login(nombre):
     #print(user)
 
     login_user(user)
-    return render_template('home.html') 
+    id_tienda_usuario = user.id_tienda
+    tienda = Tienda.query.filter_by(id=id_tienda_usuario).first()
+    nombredetienda = tienda.nombre_tienda
+    nitdetienda = tienda.nit
+    direcciondetienda = tienda.direccion
+    telefonodetienda = tienda.telefono
+    return render_template('home.html', nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda) 
     #return 'You are now logged in!'       

@@ -3,6 +3,7 @@ from flask import Flask
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
 from sqlalchemy import desc
 from models.usuario import Usuario
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app import Bcrypt ,bcrypt
@@ -18,6 +19,7 @@ def index():
     #    print(usuario)
     return render_template('/usuario/index.html', usuarios=usuariosLista)
 
+@login_required
 def store():
     _id_usuario = request.form.get('txtId')
     _nombre = request.form.get('txtNombre')
@@ -36,6 +38,7 @@ def store():
 def show():
     pass
 
+@login_required
 def update():
     _id_usuario = request.form.get('txtId')
     _nombre = request.form.get('txtNombre')
@@ -49,7 +52,7 @@ def update():
     usuario.update()
     return redirect('/usuario')
 
-
+@login_required
 def destroy(usuario_id_usuario):
     usuario = Usuario(usuario_id_usuario, "Cesar", "Mendoza", "cesar@correo.com", "c24mendoza", "1234", "Tendero")
     Usuario.delete(usuario)
