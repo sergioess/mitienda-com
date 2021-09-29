@@ -50,7 +50,8 @@ class Producto(database.Model):
     @staticmethod
     def get_all_activo():
         #return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
-        productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
+        productos = database.session.query(Producto, Categoria).join(Categoria).filter(Producto.activo==1).order_by(asc(Producto.id)).all()
+
         return productos
 
     # con este se hace un conteo de productos
