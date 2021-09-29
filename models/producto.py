@@ -4,6 +4,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from models.categoria import Categoria
 from sqlalchemy import asc, desc
+from sqlalchemy.sql import select, join
 
 from flask_login import current_user
 
@@ -41,7 +42,21 @@ class Producto(database.Model):
 
     @staticmethod
     def get_all():
-        productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
+        # productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
+        productos = Producto.query.all()
+        # print(productos)
+        print(
+            select(Producto.id, Producto.nombre, Categoria.nombre).
+            select_from(Producto).
+            join(Categoria)
+        )
+        stmt = (
+            select(Producto.id, Producto.nombre, Categoria.nombre).
+            select_from(Producto).
+            join(Categoria))
+        prueba = database.session.execute(stmt).all()
+        for producto in prueba:
+            print(producto)
         return productos
 
     # con este obtenemos toda la info que hay
@@ -53,7 +68,7 @@ class Producto(database.Model):
     @staticmethod
     def get_all_activo():
         #return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
-
+        Producto.get_all()
         productos = database.session.query(Producto, Categoria).join(Categoria).filter(Producto.activo==1).filter(Producto.tienda_id==current_user.id_tienda).order_by(asc(Producto.id)).all()
         print("El id de tienda",current_user.id_tienda)
         return productos
