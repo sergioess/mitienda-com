@@ -56,6 +56,7 @@ class Usuario(UserMixin,database.Model):
     
     def save(self):
         if not self.id:
+            self.is_active=True
             database.session.add(self)
         database.session.commit()
 

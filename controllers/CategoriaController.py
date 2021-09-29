@@ -8,7 +8,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 # app = Flask(__name__)
 # app.config.from_object('config')
 
-# @login_required
+@login_required
 def index():
     categoriasLista = Categoria.get_all_activo()
     
