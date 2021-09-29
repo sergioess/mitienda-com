@@ -15,7 +15,6 @@ class Entrada(database.Model):
     precio = database.Column(database.Float, nullable=False)
     fecha = database.Column(database.Date, nullable=False)
     id_producto = database.Column(database.Integer, ForeignKey("productos.id"))
-    #id_producto = database.Column(database.Integer, nullable=False)
     fecha_vencimiento = database.Column(database.Date, nullable=True)
     cantidad = database.Column(database.Float, nullable=False)
     proveedor = database.Column(database.String, nullable=True)

@@ -5,7 +5,7 @@ from sqlalchemy import desc
 from models.usuario import Usuario
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app import Bcrypt ,bcrypt
 
 @login_required
@@ -26,7 +26,7 @@ def store():
     _apellidos = request.form.get('txtApellidos')
     _correo = request.form.get('txtCorreo')
     _nombre_usuario = request.form.get('txtNombre_usuario')
-    _password = request.form.get('txtPassword')
+    _password = bcrypt.generate_password_hash(request.form.get('txtPassword')).decode('utf-8')
     _rol = request.form.get('txtRol')
     usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
     usuario.activo = 1
