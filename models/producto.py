@@ -15,7 +15,7 @@ class Producto(database.Model):
     costo = database.Column(database.Float, nullable=False)
     precio_venta = database.Column(database.Float, nullable=False)
     imagen = database.Column(database.String, nullable=True)
-    #tienda_id = database.Column(database.Integer)
+    tienda_id = database.Column(database.Integer)
     activo = database.Column(database.Integer, nullable=False)
     stock = database.Column(database.Float, nullable=False)
     categoria_id = database.Column(database.Integer, ForeignKey("categorias.id"))
