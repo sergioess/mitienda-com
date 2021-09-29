@@ -1,9 +1,9 @@
-<form method="POST" action="{{ url_for('categoria_bp.store') }}" enctype="multipart/form-data" >
-  <div     class="modal fade text-left p-5" id="modalcreate" tabindex="-1" role="dialog" aria-hidden="true" >
+<orm method="POST" action="{{ url_for('entrada_bp.store') }}" enctype="multipart/form-data" >
+  <div class="modal fade text-left p-5" id="modalcreate" tabindex="-1" role="dialog" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-tittle">Nueva Clasificación</h4>
+          <h4 class="modal-tittle">Nueva Tienda</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -12,10 +12,50 @@
         <div class="modal-body p-2">
           <div class="row">
             <div class="col-md">
-              <label for="txtNombre">Nombre</label>
+              <label for="txtProducto">Nombre de la tienda</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" required />
+              <input class="form-control d-inline" type="text" name="txtProducto" id="txtProducto" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtCantidad">Nit</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtCantidad" id="txtCantidad" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtPrecio">Dirección</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtPrecio" id="txtPrecio" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtFecha_Ven">Teléfono</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtFecha_Ven" id="txtFecha_Ven" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtProveedor">Propietario</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtProveedor" id="txtProveedor" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtProveedor">Ciudad</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtProveedor" id="txtProveedor" required/>
             </div>
           </div>
         </div>
