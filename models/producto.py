@@ -15,7 +15,7 @@ class Producto(database.Model):
     costo = database.Column(database.Float, nullable=False)
     precio_venta = database.Column(database.Float, nullable=False)
     imagen = database.Column(database.String, nullable=True)
-    #tienda_id = database.Column(database.Integer)
+    tienda_id = database.Column(database.Integer)
     activo = database.Column(database.Integer, nullable=False)
     stock = database.Column(database.Float, nullable=False)
     categoria_id = database.Column(database.Integer, ForeignKey("categorias.id"))
@@ -50,7 +50,7 @@ class Producto(database.Model):
     @staticmethod
     def get_all_activo():
         #return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
-        productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
+        productos = database.session.query(Producto, Categoria).join(Categoria).filter(Producto.activo==1).order_by(asc(Producto.id)).all()
         return productos
 
     # con este se hace un conteo de productos
