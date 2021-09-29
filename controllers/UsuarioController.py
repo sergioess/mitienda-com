@@ -4,6 +4,9 @@ from flask import config, render_template, redirect, url_for, request, abort, fl
 from sqlalchemy import desc
 from models.usuario import Usuario
 
+
+from app import Bcrypt ,bcrypt
+
 def index():
     usuariosLista = Usuario.get_all_activo()
     
@@ -25,7 +28,7 @@ def store():
     usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
     usuario.activo = 1
     usuario.id_tienda = 1
-    Usuario.save(usuario)
+    usuario.save()
     return redirect('/usuario')
 
     
@@ -38,10 +41,11 @@ def update():
     _apellidos = request.form.get('txtApellidos')
     _correo = request.form.get('txtCorreo')
     _nombre_usuario = request.form.get('txtNombre_usuario')
-    _password = request.form.get('txtPassword')
+    _password = bcrypt.generate_password_hash(request.form.get('txtPassword')).decode('utf-8')
     _rol = request.form.get('txtRol')
     usuario = Usuario(_id_usuario, _nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
-    Usuario.update(usuario)
+    print(usuario)
+    usuario.update()
     return redirect('/usuario')
 
 
