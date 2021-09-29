@@ -1,5 +1,5 @@
 {% include '/header.html' %}
-{% include '/nav.html' %}
+{% include '/nav2.html' %}
 <div class="container">
   <br />
   <div class="row justify-content-center">
@@ -16,34 +16,37 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Precio</th>
-            <th>Fecha</th>
-            <th>Fecha_vencimiento</th>
-            <th>Id_producto</th>
-            <th>Cantidad</th>
-            <th>Acciones</th>
+            <th class="text-center">Producto</th>
+            <th class="text-center">Cantidad</th>
+            <th class="text-center">Precio</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Fecha_vencimiento</th>
+            <th class="text-center">Acciones</th>
           </tr>
         </thead>
 
         <tbody>
           {% for entrada in entradas %}
-          <tr>
-            <td>{{loop.index0 + 1}}</td>
-            
-            <td>{{entrada['precio']}}</td>
-            <td>{{entrada['fecha']}}</td>
-            <td>{{entrada['fecha_vencimiento']}}</td>
-            <td>{{entrada['id_producto']}}</td>
-            <td>{{entrada['cantidad']}}</td>
-            <td>
-              <a class="btn btn-warning btn-sm py-0" href="#"
-                data-toggle="modal"  data-target="#modaledit{{entrada['id_entradas']}}" >
-                <i class="far fa-edit"></i></a>
-              |
-              <a onclick="return confirm('Desea borrar la Entrada?')" class="btn btn-danger btn-sm py-0" href="/entrada/destroy/{{entrada['id_entradas']}}">            
-                <i class="far fa-trash-alt"></i></a>
-            </td>
-          </tr>
+            <tr>
+              <td>{{loop.index0 + 1}}</td>
+              <td>{{entrada.Producto.nombre}}</td>
+              <td class="text-right">{{entrada.Entrada.cantidad}}</td>  
+              <td class="text-right">{{entrada.Entrada.precio}}</td>
+              <td class="text-right">{{entrada.Entrada.total}}</td>
+              <td class="text-center">{{entrada.Entrada.fecha}}</td>
+              <td class="text-center">{{entrada.Entrada.fecha_vencimiento}}</td>
+
+              
+              <td class="text-center">
+                <a class="btn btn-warning btn-sm py-0" href="#"
+                  data-toggle="modal"  data-target="#modaledit{{entrada.Entrada.id_entradas}}" >
+                  <i class="far fa-edit"></i></a>
+                |
+                <a onclick="return confirm('Desea borrar la Entrada?')" class="btn btn-danger btn-sm py-0" href="/entrada/destroy/{{entrada.Entrada.id_entradas}}">            
+                  <i class="far fa-trash-alt"></i></a>
+              </td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
@@ -52,7 +55,8 @@
 </div>
 
 {% for entrada in entradas %} 
-{% include '/entrada/modal/edit.html' %}
+  {% include '/entrada/modal/edit.html' %}
 {% endfor %}
 
+{% include '/entrada/scripts.html' %}
 {% include '/footer.html' %}

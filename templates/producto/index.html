@@ -1,5 +1,6 @@
 {% include '/header.html' %}
-{% include '/nav.html' %}
+{% include '/producto/headerproducto.html' %}
+{% include '/nav2.html' %}
 <div class="container">
   <br />
   <div class="row justify-content-center">
@@ -22,6 +23,8 @@
             <th>Referencia</th>
             <th>Costo</th>
             <th>Precio_venta</th>
+            <th>Stock</th>
+            <th>Categoria</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -31,16 +34,18 @@
           <tr>
             <td>{{loop.index0 + 1}}</td>
             
-            <td>{{producto['nombre']}}</td>
-            <td>{{producto['referencia']}}</td>
-            <td>{{producto['costo']}}</td>
-            <td>{{producto['precio_venta']}}</td>
+            <td>{{producto.Producto.nombre}}</td>
+            <td>{{producto.Producto.referencia}}</td>
+            <td>{{producto.Producto.costo}}</td>
+            <td>{{producto.Producto.precio_venta}}</td>
+            <td>{{producto.Producto.stock}}</td>
+            <td>{{producto.Categoria.nombre}}</td>
             <td>
               <a class="btn btn-warning btn-sm py-0" href="#"
-                data-toggle="modal"  data-target="#modaledit{{producto['id']}}" >
+                data-toggle="modal"  data-target="#modaledit{{producto.Producto.id}}" >
                 <i class="far fa-edit"></i></a>
               |
-              <a onclick="return confirm('Desea borrar el producto?')" class="btn btn-danger btn-sm py-0" href="/producto/destroy/{{producto['id']}}">            
+              <a onclick="return confirm('Desea borrar el producto?')" class="btn btn-danger btn-sm py-0" href="/producto/destroy/{{producto.Producto.id}}">            
                 <i class="far fa-trash-alt"></i></a>
             </td>
           </tr>
@@ -54,5 +59,6 @@
 {% for producto in productos %} 
 {% include '/producto/modal/edit.html' %}
 {% endfor %}
+{% include '/producto/scripts.html' %}
 
 {% include '/footer.html' %}

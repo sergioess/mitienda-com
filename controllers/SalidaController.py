@@ -6,18 +6,22 @@ from models.salida import Salida
 from models.producto import Producto
 from datetime import datetime
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+# @login_required
 def index():
     salidasLista = Salida.get_all()
     productosLista = Producto.get_all_activo()
     return render_template('/salida/index.html', salidas=salidasLista, productos=productosLista)
 
+# @login_required
 def store():
     _id_producto = request.form.get('txtProducto')
     if (int(_id_producto) >= 1 ):
         _cantidad = request.form.get('txtCantidad')
         _precio = request.form.get('txtPrecio')
         date = datetime.now()
-
+          
         nuevaSalida = Salida(_id_producto, _precio, date, _cantidad)
         #print (nuevaSalida)
         nuevaSalida.save()
@@ -28,6 +32,7 @@ def store():
 def show():
     pass
 
+# @login_required
 def update():
     _id = request.form.get('txtId')
     _id_producto = request.form.get('txtProducto')
@@ -39,7 +44,7 @@ def update():
     salida.update(_id)
     return redirect('/salida')
 
-
+# @login_required
 def destroy(salida_id):
     print(salida_id)
     salida = Salida(salida_id, 10, "13/12/2021", 0)

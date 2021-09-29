@@ -1,7 +1,7 @@
 <form method="POST" action="{{ url_for('producto_bp.update') }}" enctype="multipart/form-data" >
-  <input type="hidden" name="txtId" id="txtId" value="{{producto['id']}}"/>
+  <input type="hidden" name="txtId" id="txtId" value="{{producto.Producto.id}}"/>
 
-  <div class="modal fade" id="modaledit{{producto['id']}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{producto['id']}}" aria-hidden="true" >
+  <div class="modal fade" id="modaledit{{producto.Producto.id}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{producto.Producto.id}}" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -14,7 +14,7 @@
 
         <div class="modal-body p-2">
           <div class="row justify-content-md-center">
-            <h5 class="text-center">{{producto['nombre']}}</h5>
+            <h5 class="text-center">{{producto.Producto.nombre}}</h5>
           </div>
 
           <div class="row">
@@ -22,7 +22,7 @@
               <label for="txtNombre">Nombre</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" value="{{producto['nombre']}}" required />
+              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" value="{{producto.Producto.nombre}}" required />
             </div>
           </div>
           <div class="row">
@@ -30,7 +30,7 @@
               <label for="txtReferencia">Referencia</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtReferencia" id="txtReferencia" value="{{producto['referencia']}}" required />
+              <input class="form-control d-inline" type="text" name="txtReferencia" id="txtReferencia" value="{{producto.Producto.referencia}}" required />
             </div>
           </div>
           <div class="row">
@@ -38,7 +38,7 @@
               <label for="txtCosto">Costo</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtCosto" id="txtCosto" value="{{producto['costo']}}" required />
+              <input class="form-control d-inline" type="text" name="txtCosto" id="txtCosto" value="{{producto.Producto.costo}}" required />
             </div>
           </div>
           <div class="row">
@@ -46,7 +46,15 @@
               <label for="txtPrecio_venta">Precio_venta</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtPrecio_venta" id="txtPrecio_venta" value="{{producto['precio_venta']}}" required />
+              <input class="form-control d-inline" type="text" name="txtPrecio_venta" id="txtPrecio_venta" value="{{producto.Producto.precio_venta}}" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtCategoria">Categoria</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="text" name="txtCategoria" id="txtCategoria" value="{{producto.Categoria.id}}" required />
             </div>
           </div>
 

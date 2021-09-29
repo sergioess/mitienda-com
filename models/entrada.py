@@ -1,5 +1,10 @@
 from datetime import date
 from app import database
+from models.producto import Producto
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy import asc, desc
+
 
 
 class Entrada(database.Model):
@@ -9,13 +14,17 @@ class Entrada(database.Model):
     id_entradas = database.Column(database.Integer, primary_key=True)
     precio = database.Column(database.Float, nullable=False)
     fecha = database.Column(database.Date, nullable=False)
-    id_producto = database.Column(database.Integer, nullable=False)
+    id_producto = database.Column(database.Integer, ForeignKey("productos.id"))
+    #id_producto = database.Column(database.Integer, nullable=False)
     fecha_vencimiento = database.Column(database.Date, nullable=True)
     cantidad = database.Column(database.Float, nullable=False)
     proveedor = database.Column(database.String, nullable=True)
     id_tienda= database.Column(database.Integer, nullable=False)
     total = database.Column(database.Float, nullable=False)
-
+   
+    
+    producto_entrada = database.relationship("Producto", backref='productos.nombre', lazy='joined')  
+    
     def __str__(self):
         return f"<Entrada {self.id_entradas} {self.precio} {self.proveedor} {self.cantidad} >"
 
@@ -38,37 +47,67 @@ class Entrada(database.Model):
 
     @staticmethod
     def get_all():
-        return Entrada.query.all()
+        entradas = database.session.query(Entrada,Producto).join(Producto).order_by(asc(Entrada.id_entradas)).all()
+        # sergios = Salida.query.all()
+
+        # for sergio in salidas:
+        #     print(sergio)
+        #     print(sergio.Salida.id_salidas, sergio.Producto.nombre)
+        return entradas
+        # return database.query(Salida).join(Producto).all()
+
 
 
     def get_by_id(id):
         return Entrada.query.filter_by(id_entradas=id).firts    
 
+
+
     def update(self, id):
+        nuevaCantidad = self.cantidad
         entradaActualiza = Entrada.query.filter_by(id_entradas=id).first()
-        print(entradaActualiza)
+        # print(entradaActualiza)
+        antiguaCantidad = entradaActualiza.cantidad
+        entradaActualiza.total = float(self.cantidad) * float(self.precio)
         entradaActualiza.precio = self.precio
         entradaActualiza.fecha = self.fecha
         entradaActualiza.fecha_vencimiento = self.fecha_vencimiento
         entradaActualiza.cantidad = self.cantidad
         entradaActualiza.proveedor = self.proveedor
         database.session.commit()
+
+        prorductoActualiza = Producto.query.filter_by(id=entradaActualiza.id_producto).first()
+        prorductoActualiza.stock = float(prorductoActualiza.stock) - float(antiguaCantidad)
+        database.session.commit()
+
+
+        prorductoActualiza.stock = float(prorductoActualiza.stock) + float(nuevaCantidad)
+        database.session.commit()
+
         return entradaActualiza
 
     def delete(self):
         print(self.id_producto)
         entradaActualiza = Entrada.query.filter_by(id_entradas=self.id_producto).first()
-        print(entradaActualiza)
-        #entradaActualiza.activo = 0
+        # print(entradaActualiza)
+
         database.session.delete(entradaActualiza)
         database.session.commit()
-        return 1  
+
+        prorductoActualiza = Producto.query.filter_by(id=entradaActualiza.id_producto).first()
+        prorductoActualiza.stock = prorductoActualiza.stock - entradaActualiza.cantidad
+        database.session.commit()
+        
 
     def save(self):
         self.total = float(self.cantidad) * float(self.precio)
         self.id_tienda = 1
         print (self)
         database.session.add(self)
+        database.session.commit()
+        
+        prorductoActualiza = Producto.query.filter_by(id=self.id_producto).first()
+        prorductoActualiza.stock = prorductoActualiza.stock + self.cantidad
         database.session.commit()
 
 

@@ -2,12 +2,17 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template, url_for
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+
 app = Flask(__name__)
 app.config.from_object('config')
 from flask import send_from_directory
 
-database = SQLAlchemy(app)
 
+
+database = SQLAlchemy(app)
+from models.usuario import Usuario
 #ACA LAS IMPORTACION DE LAS RUTAS
 from routes.categoria_bp import categoria_bp
 from routes.producto_bp import producto_bp
@@ -27,18 +32,19 @@ app.register_blueprint(salida_bp, url_prefix='/salida')
 app.register_blueprint(tienda_bp, url_prefix='/tienda')
 
 app.register_blueprint(inicio_bp, url_prefix='/')
-# @app.route("/")
-# def hello():
 
-#     return render_template('/index.html')
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(id):
+    return Usuario.query.get(int(id))
+
 
 @app.route('/img/<nombreFoto>')
 def uplproductos(nombreFoto):
     return send_from_directory(app.config['CARPETA_IMG'], nombreFoto)
-
-@app.route("/login")
-def hello2():
-    return "Hello Login"    
 
 
 if __name__ == '__main__':

@@ -14,10 +14,21 @@
             <div class="col-md">
               <label for="txtProducto">Producto</label>
             </div>
-            <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtProducto" id="txtProducto" required/>
+            <div class="col-md d-inline  form-group vehicle-type">
+             
+             
+              <select class="selectpicker bg-dark  form-control idproducto" name="txtProducto" data-live-search="true" id ="one">
+                <option value=0>Seleccion</option>
+                  {% for producto in productos %}
+                
+                    <option value="{{producto.Producto.id}}" data-price="{{producto.Producto.precio_venta}}"
+                        data-tokens="{{producto.Producto.id}}">{{producto.Producto.nombre}}</option>
+                  {% endfor %}
+              </select>
+              
             </div>
           </div>
+
           <div class="row">
             <div class="col-md">
               <label for="txtCantidad">Cantidad</label>
