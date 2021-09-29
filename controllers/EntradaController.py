@@ -8,7 +8,7 @@ from datetime import datetime
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-# @login_required
+@login_required
 def index():
     entradasLista = Entrada.get_all()
     productosLista = Producto.get_all_activo()
@@ -19,7 +19,7 @@ def index():
 
     return render_template('/entrada/index.html', entradas=entradasLista, productos=productosLista)
 
-# @login_required
+#@login_required
 def store():
     _id_producto = request.form.get('txtProducto')
     _cantidad = request.form.get('txtCantidad')
@@ -36,7 +36,7 @@ def store():
 def show():
     pass
 
-# @login_required
+#@login_required
 def update():
     _id = request.form.get('txtId')
     _id_producto = request.form.get('txtProducto')
