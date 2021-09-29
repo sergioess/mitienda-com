@@ -17,7 +17,7 @@ class Usuario(UserMixin,database.Model):
     id_tienda = database.Column(database.Integer, nullable=False)
     activo = database.Column(database.Integer, nullable=False)
     rol = database.Column(database.String(30), nullable=False)
-    is_active = database.Column(database.Boolean, nullable=True)
+    is_active = database.Column(database.Boolean, nullable=True, default=True)
 
     # rolid = database.Column(database.Integer, database.ForeignKey(rol.id))
 

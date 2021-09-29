@@ -1,6 +1,7 @@
 
 from app import database
 from sqlalchemy import asc, desc
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 
 class Categoria(database.Model):
@@ -37,7 +38,7 @@ class Categoria(database.Model):
 
     @staticmethod
     def get_all_activo():
-        return Categoria.query.filter_by(activo=1).order_by(asc(Categoria.id))   
+        return Categoria.query.filter_by(activo=1).filter_by(id_tienda=current_user.id_tienda).order_by(asc(Categoria.id))   
 
     @staticmethod
     def get_by_id(self):

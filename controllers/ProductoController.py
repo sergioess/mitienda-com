@@ -35,7 +35,7 @@ def store():
         _foto.save("uplproductos/" + nuevoNombreFoto)
 
    
-    producto = Producto(_nombre, _referencia, _costo, _precio_venta, 1, 0, _categoria, nuevoNombreFoto )
+    producto = Producto(_nombre, _referencia, _costo, _precio_venta, current_user.id_tienda, 0, _categoria, nuevoNombreFoto )
     print(producto)
     producto.save()
     return redirect('/producto')
@@ -55,11 +55,14 @@ def update():
     _foto=request.files.get('txtFoto')
     now=datetime.now()
     tiempo = now.strftime("%Y%H%M%S")
+    actualizaProducto = Producto.query.filter_by(id=_id).first()
+    nuevoNombreFoto = actualizaProducto.imagen
     if(_foto.filename != ''):
         nuevoNombreFoto = tiempo + _foto.filename
         _foto.save("uplproductos/" + nuevoNombreFoto)
-        actualizaProducto = Producto.query.filter_by(id=_id).first()
-        os.remove(os.path.join(app.config['CARPETA_PTOS'], actualizaProducto.imagen))
+        
+        if len(actualizaProducto.imagen) != 0   :
+            os.remove(os.path.join(app.config['CARPETA_PTOS'], actualizaProducto.imagen))
     
     producto = Producto(_nombre, _referencia, _costo, _precio_venta,1,0, _categoria, nuevoNombreFoto )
     producto.update(_id)

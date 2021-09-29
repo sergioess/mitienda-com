@@ -5,6 +5,8 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy import asc, desc
 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
 
 
 class Entrada(database.Model):
@@ -46,7 +48,7 @@ class Entrada(database.Model):
 
     @staticmethod
     def get_all():
-        entradas = database.session.query(Entrada,Producto).join(Producto).order_by(asc(Entrada.id_entradas)).all()
+        entradas = database.session.query(Entrada,Producto).join(Producto).filter(Entrada.id_tienda==current_user.id_tienda).order_by(asc(Entrada.id_entradas)).all()
         # sergios = Salida.query.all()
 
         # for sergio in salidas:
@@ -100,7 +102,7 @@ class Entrada(database.Model):
 
     def save(self):
         self.total = float(self.cantidad) * float(self.precio)
-        self.id_tienda = 1
+        self.id_tienda = current_user.id_tienda
         print (self)
         database.session.add(self)
         database.session.commit()

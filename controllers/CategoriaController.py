@@ -27,7 +27,7 @@ def store():
     _nombre = request.form.get('txtNombre')
     categoria = Categoria(_id,_nombre )
     categoria.activo = 1
-    categoria.id_tienda = 1
+    categoria.id_tienda = current_user.id_tienda
     Categoria.save(categoria)
     return redirect('/categoria')
     

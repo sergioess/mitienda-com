@@ -5,6 +5,8 @@ from sqlalchemy.orm import relationship
 from models.categoria import Categoria
 from sqlalchemy import asc, desc
 
+from flask_login import current_user
+
 class Producto(database.Model):
 
     __tablename__ = 'productos'
@@ -32,7 +34,7 @@ class Producto(database.Model):
         self.stock = stock
         self.categoria_id = categoria_id
         self.imagen = imagen
-
+ 
     # método to string  (de python)
     def __str__(self):
         return f"<Producto {self.id} {self.nombre} {self.referencia} {self.costo} {self.precio_venta} {self.activo} {self.stock} {self.categoria_id} >"
@@ -52,8 +54,8 @@ class Producto(database.Model):
     def get_all_activo():
         #return Producto.query.filter_by(activo=1).order_by(asc(Producto.id))
 
-        productos = database.session.query(Producto, Categoria).join(Categoria).filter(Producto.activo==1).order_by(asc(Producto.id)).all()
-
+        productos = database.session.query(Producto, Categoria).join(Categoria).filter(Producto.activo==1).filter(Producto.tienda_id==current_user.id_tienda).order_by(asc(Producto.id)).all()
+        print("El id de tienda",current_user.id_tienda)
         return productos
 
     # con este se hace un conteo de productos
@@ -84,7 +86,7 @@ class Producto(database.Model):
 
     # este es para guardar un nuevo registro
     def save(self):
-        self.tienda_id = 1
+        self.tienda_id = current_user.id_tienda
         print(self)
         database.session.add(self)
         database.session.commit()

@@ -34,19 +34,19 @@
         <tbody>
           {% for producto in productos %}
           <tr>
-            <td>{{loop.index0 + 1}}</td>
+            <td class="align-middle">{{loop.index0 + 1}}</td>
             
             <td class="align-middle">
               <img class="" width="100px" src="/uplproductos/{{producto.Producto.imagen}}" alt="">
             </td>
 
-            <td>{{producto.Producto.nombre}}</td>
-            <td>{{producto.Producto.referencia}}</td>
-            <td>{{producto.Producto.costo}}</td>
-            <td>{{producto.Producto.precio_venta}}</td>
-            <td>{{producto.Producto.stock}}</td>
-            <td>{{producto.Categoria.nombre}}</td>
-            <td>
+            <td class="align-middle">{{producto.Producto.nombre}}</td>
+            <td class="align-middle">{{producto.Producto.referencia}}</td>
+            <td class="align-middle">{{producto.Producto.costo}}</td>
+            <td class="align-middle">{{producto.Producto.precio_venta}}</td>
+            <td class="align-middle">{{producto.Producto.stock}}</td>
+            <td class="align-middle">{{producto.Categoria.nombre}}</td>
+            <td class="align-middle">
               <a class="btn btn-warning btn-sm py-0" href="#"
                 data-toggle="modal"  data-target="#modaledit{{producto.Producto.id}}" >
                 <i class="far fa-edit"></i></a>

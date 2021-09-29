@@ -5,11 +5,11 @@
   <div class="modal fade" id="modaledit{{entrada.Entrada.id_entradas}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{entrada.Entrada.id_entradas}}" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style="background-color: #011f4b; color: white">
           <h4 class="modal-tittle">Editar Entrada</h4>
           <br />
 
-          <button type="button"class="close"data-dismiss="modal"aria-label="Cerrar">
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar" >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -32,7 +32,7 @@
               <input class="form-control d-inline" type="text" name="txtCantidad" id="txtCantidad" value="{{entrada.Entrada.cantidad}}" required/>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtPrecio">Precio Unitario</label>
             </div>
@@ -40,7 +40,7 @@
               <input class="form-control d-inline" type="text" name="txtPrecio" id="txtPrecio" value="{{entrada.Entrada.precio}}" required/>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtFecha_Ven">Fecha Vencimiento</label>
             </div>
@@ -48,7 +48,7 @@
               <input class="form-control d-inline" type="text" name="txtFecha_Ven" id="txtFecha_Ven" value="{{entrada.Entrada.fecha_vencimiento}}" required/>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtProveedor">Proveedor</label>
             </div>

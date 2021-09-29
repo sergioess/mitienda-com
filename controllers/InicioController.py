@@ -18,7 +18,13 @@ from forms import LoginForm
 def home():
     categoriasTotal = Categoria.count_records()
     productosTotal = Producto.count_records()
-    return render_template('/home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal)
+
+    tienda = Tienda.query.filter_by(id=current_user.id_tienda).first()
+    nombredetienda = tienda.nombre_tienda
+    nitdetienda = tienda.nit
+    direcciondetienda = tienda.direccion
+    telefonodetienda = tienda.telefono
+    return render_template('/home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda) 
 
 def index():
     
@@ -38,13 +44,22 @@ def frmlogin():
         print("Ingresado", _nombre, _password,passIngresado)
         print("Ingresado", passIngresado)
         user = Usuario.query.filter_by(nombre_usuario=_nombre).first()
-        passUsuario = user.password
-        print("Usuario",user.nombre, user.apellidos,  passUsuario)
+        
+        print(user)
+        if not user:
+            flash(f'Usuario no encontrado en la Base de Datos!', 'danger')
+            
+        else:
+            passUsuario = user.password
+            print("Encontrado")
+
+        
+            print("Usuario",user.nombre, user.apellidos,  passUsuario)
         if user and bcrypt.check_password_hash(user.password, login_form.password.data):
-            flash('Welcome back', 'success')
+            flash('Bienvenido de Regreso', 'success')
             return login(_nombre)
         else:
-            flash(f'Login incorrect check email, password!', 'danger')
+            flash(f'Inicio de Sesion incorrecto, verifique el Usuario y Contraseña!', 'danger')
 
     return render_template("login.html", form=login_form)
 
@@ -60,8 +75,8 @@ def logout():
     #return 'You are now logged out!'    
 
 def login(nombre):
-    # _nombre = request.form.get('txtNombre')
-    # _password = request.form.get('txtPassword')    
+    categoriasTotal = Categoria.count_records()
+    productosTotal = Producto.count_records()   
     print(bcrypt.generate_password_hash('_password'))
     #print(_nombre)
     user = Usuario.query.filter_by(nombre_usuario=nombre).first()
@@ -74,5 +89,5 @@ def login(nombre):
     nitdetienda = tienda.nit
     direcciondetienda = tienda.direccion
     telefonodetienda = tienda.telefono
-    return render_template('home.html', nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda) 
+    return render_template('home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda) 
     #return 'You are now logged in!'       

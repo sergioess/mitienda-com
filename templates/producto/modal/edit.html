@@ -5,10 +5,10 @@
   <div class="modal fade" id="modaledit{{producto.Producto.id}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{producto.Producto.id}}" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header" style="background-color: #011f4b; color: white">
           <h4 class="modal-tittle">Editar producto</h4>
           <br />
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" >
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar" >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -19,7 +19,7 @@
           </div>
 
           
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtReferencia">Referencia</label>
             </div>
@@ -27,7 +27,7 @@
               <input class="form-control d-inline" type="text" name="txtReferencia" id="txtReferencia" value="{{producto.Producto.referencia}}" required />
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtCosto">Costo</label>
             </div>
@@ -35,7 +35,7 @@
               <input class="form-control d-inline" type="text" name="txtCosto" id="txtCosto" value="{{producto.Producto.costo}}" required />
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtPrecio_venta">Precio_venta</label>
             </div>
@@ -43,7 +43,7 @@
               <input class="form-control d-inline" type="text" name="txtPrecio_venta" id="txtPrecio_venta" value="{{producto.Producto.precio_venta}}" required />
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-2">
             <div class="col-md">
               <label for="txtCategoria">Categoria</label>
             </div>
