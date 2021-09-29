@@ -47,8 +47,14 @@ def load_user(id):
 
 
 @app.route('/img/<nombreFoto>')
-def uplproductos(nombreFoto):
+def img(nombreFoto):
     return send_from_directory(app.config['CARPETA_IMG'], nombreFoto)
+
+@app.route('/uplproductos/<nombreFoto>')
+def uplproductos(nombreFoto):
+    # print(app.config['CARPETA'])
+    return send_from_directory(app.config['CARPETA_PTOS'], nombreFoto)
+
 
 
 if __name__ == '__main__':

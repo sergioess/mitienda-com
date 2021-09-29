@@ -11,3 +11,5 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://oxwttxarfidlxi:89e47cacfc5926776ab52a7e4
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 CARPETA_IMG = os.path.join('img')
+CARPETA_PTOS = os.path.join('uplproductos')
+

@@ -23,7 +23,7 @@ class Producto(database.Model):
     categoria_producto = database.relationship("Categoria", backref='categorias.nombre', lazy='joined')
 
     # este es el constructor de la clase
-    def __init__(self, nombre: str, referencia: str, costo, precio_venta, activo: int, stock, categoria_id):
+    def __init__(self, nombre: str, referencia: str, costo, precio_venta, activo: int, stock, categoria_id, imagen):
         self.nombre = nombre
         self.referencia = referencia
         self.costo = costo
@@ -31,6 +31,7 @@ class Producto(database.Model):
         self.activo = activo
         self.stock = stock
         self.categoria_id = categoria_id
+        self.imagen = imagen
 
     # método to string  (de python)
     def __str__(self):
@@ -65,6 +66,7 @@ class Producto(database.Model):
         productoActualiza.referencia = self.referencia
         productoActualiza.costo = self.costo
         productoActualiza.precio_venta = self.precio_venta
+        productoActualiza.imagen = self.imagen
         database.session.commit()
         return productoActualiza
 
@@ -76,12 +78,11 @@ class Producto(database.Model):
         # print(productoActualiza)
         productoActualiza.activo = 0
         database.session.commit()
-        return 1
+        return 0
 
     # este es para guardar un nuevo registro
     def save(self):
         self.tienda_id = 1
-        self.imagen = ""
         print(self)
         database.session.add(self)
         database.session.commit()

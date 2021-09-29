@@ -1,5 +1,6 @@
 <form method="POST" action="{{ url_for('producto_bp.update') }}" enctype="multipart/form-data" >
   <input type="hidden" name="txtId" id="txtId" value="{{producto.Producto.id}}"/>
+  <input type="hidden" name="txtNombre" id="txtNombre" value="{{producto.Producto.nombre}}"/>
 
   <div class="modal fade" id="modaledit{{producto.Producto.id}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{producto.Producto.id}}" aria-hidden="true" >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
@@ -17,14 +18,7 @@
             <h5 class="text-center">{{producto.Producto.nombre}}</h5>
           </div>
 
-          <div class="row">
-            <div class="col-md">
-              <label for="txtNombre">Nombre</label>
-            </div>
-            <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" value="{{producto.Producto.nombre}}" required />
-            </div>
-          </div>
+          
           <div class="row">
             <div class="col-md">
               <label for="txtReferencia">Referencia</label>
@@ -57,7 +51,18 @@
               <input class="form-control d-inline" type="text" name="txtCategoria" id="txtCategoria" value="{{producto.Categoria.id}}" required />
             </div>
           </div>
-
+          <div class="row mt-2">
+            <div class="form-group">
+              <div class="col-md">
+                <label for="txtNombre">Imagen</label>
+                <img class="img-thumbnail" width="100px" src="/uplproductos/{{producto.Producto.imagen}}" alt="">
+              </div>
+              <div class="col-md">
+                <input  class="form-control"  type="file" name="txtFoto" id="txtFoto"  >
+              </div>
+            </div>
+          </div>
+    
 
         </div>
 
