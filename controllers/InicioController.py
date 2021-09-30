@@ -116,8 +116,7 @@ def logout():
     #return 'You are now logged out!'    
 
 def login(nombre):
-    categoriasTotal = Categoria.count_records()
-    productosTotal = Producto.count_records()   
+ 
     print(bcrypt.generate_password_hash('_password'))
     #print(_nombre)
     user = Usuario.query.filter_by(nombre_usuario=nombre).first()
@@ -125,6 +124,8 @@ def login(nombre):
 
     login_user(user)
     id_tienda_usuario = user.id_tienda
+    categoriasTotal = Categoria.count_records(id_tienda_usuario)
+    productosTotal = Producto.count_records(id_tienda_usuario)  
     tienda = Tienda.query.filter_by(id=id_tienda_usuario).first()
     nombredetienda = tienda.nombre_tienda
     nitdetienda = tienda.nit

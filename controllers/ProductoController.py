@@ -35,7 +35,7 @@ def store():
         _foto.save("uplproductos/" + nuevoNombreFoto)
 
    
-    producto = Producto(_nombre, _referencia, _costo, _precio_venta, current_user.id_tienda, 0, _categoria, nuevoNombreFoto )
+    producto = Producto(_nombre, _referencia, _costo, _precio_venta, 1, 0, _categoria, nuevoNombreFoto )
     print(producto)
     producto.save()
     return redirect('/producto')

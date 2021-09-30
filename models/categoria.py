@@ -2,6 +2,9 @@
 from app import database
 from sqlalchemy import asc, desc
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask import session
+from models.usuario import Usuario
+
 
 
 class Categoria(database.Model):
@@ -33,8 +36,9 @@ class Categoria(database.Model):
         return Categoria.query.all()
 
     @staticmethod
-    def count_records():
-        return Categoria.query.count()      
+    def count_records(tienda_id):
+        
+        return Categoria.query.filter_by(activo=1).filter_by(id_tienda=tienda_id).count()      
 
     @staticmethod
     def get_all_activo():

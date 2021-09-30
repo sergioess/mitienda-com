@@ -75,8 +75,8 @@ class Producto(database.Model):
 
     # con este se hace un conteo de productos
     @staticmethod
-    def count_records():
-        return Producto.query.count()
+    def count_records(tienda_id):
+        return Producto.query.filter_by(activo=1).filter_by(tienda_id=tienda_id).count()
 
     # Con este actualiza un registro, son llamados por el controlador
     def update(self, id):

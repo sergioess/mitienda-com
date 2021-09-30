@@ -51,12 +51,26 @@
                                     {% endif %}
                                 </a>
                             
-                                <div class="dropdown-menu " id="dropdown"aria-labelledby="dropdown07">
-                                    {% if current_user.is_anonymous %}
-                                        <a class="dropdown-item" href="{{ url_for('inicio_bp.frmlogin') }}">Inicia Sesión</a>
-                                    {% else %}
-                                        <a class="dropdown-item" href="{{ url_for('inicio_bp.logout') }}">Cerrar Sesión</a>
-                                    {% endif %}
+                                <div class="dropdown-menu bg-dark p-0" id="dropdown"aria-labelledby="dropdown07" style=" width:280px">
+                                    <div class="container  bg-dark py-2 ">
+                                        <div class="col text-white  text-center">
+                                            <img src="/img/cuenta.svg" class="rounded-circle my-3" width="60" height="60" alt="">
+                                            <div class="mt-2"><strong>Perfil</strong> </div>
+                                            <div class="mt-2">{{ current_user.rol }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="container bg-light p-1 pt-2 justify-content-center">
+                                        <div class="col-12 px-1">
+                                            {% if current_user.is_anonymous %}
+                                            <a class="dropdown-item" href="{{ url_for('inicio_bp.frmlogin') }}">Inicia Sesión</a>
+                                            {% else %}
+                                                <a class=" btn btn-outline-dark w-100 mb-2" href="{{ url_for('inicio_bp.logout') }}">Cerrar Sesión</a>
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
+
+
     
                                     
                                 </div>
