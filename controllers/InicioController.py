@@ -16,10 +16,13 @@ from forms import LoginForm, RegistroForm
 
 # @login_required
 def home():
-    categoriasTotal = Categoria.count_records()
-    productosTotal = Producto.count_records()
+    # print("Actual logueado", current_user)
+    user = Usuario.query.filter_by(id=current_user.id).first()
+    # print(user)
+    categoriasTotal = Categoria.count_records(user.id_tienda)
+    productosTotal = Producto.count_records(user.id_tienda)  
 
-    tienda = Tienda.query.filter_by(id=current_user.id_tienda).first()
+    tienda = Tienda.query.filter_by(id=user.id_tienda).first()
     nombredetienda = tienda.nombre_tienda
     nitdetienda = tienda.nit
     direcciondetienda = tienda.direccion
@@ -73,9 +76,7 @@ def frmlogin():
         _nombre = login_form.username.data
         _password = login_form.password.data
 
-        next = request.args.get('next', None)
-        if next:
-            return redirect(next)
+
 
         passIngresado=bcrypt.generate_password_hash('_password').decode('utf-8')
         print("Ingresado", _nombre, _password,passIngresado)
@@ -98,7 +99,14 @@ def frmlogin():
             print("Usuario",user.nombre, user.apellidos,  passUsuario)
         if user and bcrypt.check_password_hash(user.password, login_form.password.data):
             flash('Bienvenido de Regreso', 'success')
-            return login(_nombre)
+
+
+            n = login(_nombre)
+
+            next = request.args.get('next', None)
+            if next:
+                return redirect(next)     
+            return n       
         else:
             flash(f'Inicio de Sesion incorrecto, verifique el Usuario y Contraseña!', 'danger')
 

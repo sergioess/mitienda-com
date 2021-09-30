@@ -41,6 +41,8 @@ app.register_blueprint(inicio_bp, url_prefix='/')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+login_manager.login_view = "inicio_bp.frmlogin"
+
 @login_manager.user_loader
 def load_user(id):
     return Usuario.query.get(int(id))
