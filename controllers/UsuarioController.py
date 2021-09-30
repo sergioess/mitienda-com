@@ -59,6 +59,11 @@ def destroy(usuario_id_usuario):
     # usuario.activo = 0
     # usuario.save()
     return redirect('/usuario')
+
+@login_required
+def activar(usuario_id_usuario):
+    Usuario.activar(usuario_id_usuario)
+    return redirect('/usuario')    
     
 def create():
     pass

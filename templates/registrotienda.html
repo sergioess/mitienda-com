@@ -1,0 +1,165 @@
+{% include '/header.html' %}
+
+</head>
+
+<body style="background-color: hsl(205, 42%, 79%)">
+    <div class="container">
+      <div class="card card-widget rounded widget-user mt-5">
+        <div class="row justify-content-center">
+          <div class="col-11 mt-2">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages%}
+                  {% for category, msg in messages %}
+                      <div class="alert alert-{{category}}">
+                          {{ msg }}
+                      </div>
+                  {% endfor %}
+              {% endif %}
+            {% endwith %}
+            
+          </div>
+        </div>
+
+        <div class="col-sm-12  mt-5">
+            <h1 class="text-center"  style="color: #03396c">Inscribir Tienda</h1>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-content-center"> 
+                        <div class="col-12 text-center">
+                            <img  width="200px" src="/img/store.png" alt="">
+                        </div>
+                        <div class="col-12 text-center">Por favor diligencie todos los datos que se le solicitan a continuación.</div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                  {% block content %}
+                    <form method="POST" action="" novalidate>
+                        {{ form.csrf_token }}
+                      {{ form.hidden_tag() }}
+
+                        <div class="row ">
+                          
+                            <div class="col-12 ">
+                                <hr>
+                                <h2 class="text-center">Datos del Tendero</h2>
+                            </div>
+                            <div class="col-12 ">
+                                <label for="">Nombres</label>
+                        
+                                {{ form.nombre }}<br>
+                                {% for error in form.nombre.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            
+                           
+            
+                            <div class="col-12 ">
+                                <label for="">Apellidos</label>
+                                {{ form.apellido }}<br>
+                                {% for error in form.apellido.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+
+                            <div class="col-12 ">
+                                <label for="">Correo Electrónico</label>
+                                {{ form.correo }}<br>
+                                {% for error in form.correo.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>
+
+                              <div class="col-12 ">
+                                <label for="">Nombre de Usuario</label>
+                                {{ form.nombreusuario }}<br>
+                                {% for error in form.nombreusuario.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>
+                              
+                              <div class="col-12 ">
+                                <label for="">Contraseña</label>
+                                {{ form.password }}<br>
+                                {% for error in form.password.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>
+
+                              <div class="col-12 ">
+                                  <hr>
+                                  <h2 class="text-center">Datos de la Tienda</h2>
+                              </div>
+
+                              
+                              <div class="col-12 ">
+                                <label for="">Nombre de la Tienda</label>
+                                {{ form.tienda }}<br>
+                                {% for error in form.tienda.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>                              
+
+                              <div class="col-12 ">
+                                <label for="">NIT</label>
+                                {{ form.nit }}<br>
+                                {% for error in form.nit.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>   
+                              <div class="col-12 ">
+                                <label for="">Dirección</label>
+                                {{ form.direccion }}<br>
+                                {% for error in form.direccion.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>   
+                              
+                              <div class="col-12 ">
+                                <label for="">Teléfono</label>
+                                {{ form.telefono }}<br>
+                                {% for error in form.telefono.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>   
+                              
+                              <div class="col-12 ">
+                                <label for="">Ciudad</label>
+                                {{ form.ciudad }}<br>
+                                {% for error in form.ciudad.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                              </div>                                 
+
+
+
+                        </div>                      
+
+                        <div class="col-12 text-center mt-3">
+                          
+
+                            {{ form.submit() }}
+                        </div>
+
+                    </form>
+                  {% endblock %}
+
+                </div>
+
+
+            </div>    
+            <br>        
+        </div>
+      </div>
+    </div>
+
+        
+   
+    {% include '/footer.html' %}

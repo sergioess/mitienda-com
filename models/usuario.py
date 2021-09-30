@@ -56,7 +56,7 @@ class Usuario(UserMixin,database.Model):
     
     def save(self):
         if not self.id:
-            self.is_active=True
+            self.is_active=False
             database.session.add(self)
         database.session.commit()
 
@@ -79,3 +79,10 @@ class Usuario(UserMixin,database.Model):
         usuarioActualiza.activo = 0
         database.session.commit()
         return 1    
+
+        
+    @staticmethod
+    def activar(id):
+        usuarioActualiza = Usuario.query.filter_by(id=id).first()
+        usuarioActualiza.is_active = True
+        database.session.commit()

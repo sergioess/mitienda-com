@@ -23,6 +23,7 @@
             <td>Correo</td>
             <td>Nombre Usuario</td>
             <td>Rol</td>
+            <td>Estado</td>
             <td>Acciones</td>
           </tr>
         </thead>
@@ -38,12 +39,22 @@
             <td>{{usuario['nombre_usuario']}}</td>
             <td>{{usuario['rol']}}</td>
             <td>
+              {% if usuario['is_active']== True %}
+                Habilitado
+              {%else %}
+                Inactivo
+              {%endif%}
+            </td>
+            <td>
               <a class="btn btn-warning btn-sm py-0" href="#"
                 data-toggle="modal"  data-target="#modaledit{{usuario['id']}}" >
                 <i class="far fa-edit"></i></a>
               |
               <a onclick="return confirm('Desea borrar el Usuario?')" class="btn btn-danger btn-sm py-0" href="/usuario/destroy/{{usuario['id']}}">            
                 <i class="far fa-trash-alt"></i></a>
+                |
+                <a onclick="return confirm('Desea activar el Usuario?')" class="btn btn-success btn-sm py-0" href="/usuario/activar/{{usuario['id']}}">            
+                  <i class="fas fa-check-circle"></i></a>                
             </td>
           </tr>
           {% endfor %}

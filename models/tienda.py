@@ -33,4 +33,6 @@ class Tienda(database.Model):
     def save(self):
         if not self.id:
             database.session.add(self)
-        database.session.commit()     
+        database.session.commit() 
+        return self.id
+            
