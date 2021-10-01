@@ -130,5 +130,7 @@ dmypy.json
 
 flask_session/
 .flask_session/
+.flask_session
+
 
 
