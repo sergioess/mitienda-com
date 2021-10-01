@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session
 
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
 from sqlalchemy import desc
@@ -7,6 +7,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app import Bcrypt ,bcrypt
+from flask_session import Session
 
 @login_required
 def index():
@@ -63,6 +64,11 @@ def destroy(usuario_id_usuario):
 @login_required
 def activar(usuario_id_usuario):
     Usuario.activar(usuario_id_usuario)
+
+    usuariosInactivos = 0
+    if Usuario.count_records_inacticos() > 0:
+        usuariosInactivos = Usuario.count_records_inacticos()
+        session['inactivos'] = usuariosInactivos    
     return redirect('/usuario')    
     
 def create():

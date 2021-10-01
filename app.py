@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template, url_for
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail
+from flask_session import Session
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
@@ -12,10 +14,12 @@ from flask import send_from_directory
 
 
 bcrypt = Bcrypt(app)
-
+lasession = Session(app)
+lasession.init_app(app)
 
 
 database = SQLAlchemy(app)
+mail = Mail(app)
 from models.usuario import Usuario
 #ACA LAS IMPORTACION DE LAS RUTAS
 from routes.categoria_bp import categoria_bp

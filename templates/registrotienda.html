@@ -3,7 +3,7 @@
 </head>
 
 <body style="background-color: hsl(205, 42%, 79%)">
-    <div class="container">
+    <div class="container col-md-10 col-lg-7 col-sm-12">
       <div class="card card-widget rounded widget-user mt-5">
         <div class="row justify-content-center">
           <div class="col-11 mt-2">
@@ -20,8 +20,8 @@
           </div>
         </div>
 
-        <div class="col-sm-12  mt-5">
-            <h1 class="text-center"  style="color: #03396c">Inscribir Tienda</h1>
+        <div class="col-12  mt-5">
+            <h1 class="text-center mb-5"  style="color: #03396c">Inscribir Tienda</h1>
             <div class="card">
                 <div class="card-header">
                     <div class="row align-content-center"> 
@@ -36,9 +36,10 @@
 
 
             </div>
+            <br>
 
-            <div class="card">
-                <div class="card-header p-2 px-md-5">
+            <div class="card col-12 bg-light">
+                <div class="card-body p-2 px-md-5">
                   {% block content %}
                     <form method="POST" action="" novalidate>
                         {{ form.csrf_token }}

@@ -36,6 +36,8 @@
                             <li class="nav-item col-md"> 
                                 <a class="nav-link pr-1" href="{{ url_for('tienda_bp.index') }}" tabindex="-1" aria-disabled="true" style="color: #fffff4" >Tiendas</a > 
                             </li> 
+
+
                         {% endif %}
                         
                             <li class="nav-item dropdown col-auto ml-auto text-right">
@@ -57,12 +59,19 @@
                                             <img src="/img/cuenta.svg" class="rounded-circle my-3" width="60" height="60" alt="">
                                             <div class="mt-2"><strong>Perfil</strong> </div>
                                             <div class="mt-2">{{ current_user.rol }}</div>
+                                            {% if current_user.rol == 'Administrador' %}
+                                                {% if session.inactivos  > 0 %}
+                                                    
+                                                        <h5 class="py-1"><span class="badge  badge-light">{{session.inactivos}}</span> Usuarios por Activar</h5>
+                                                      
+                                                {% endif %}
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="container bg-light p-1 pt-2 justify-content-center">
                                         <div class="col-12 px-1">
                                             {% if current_user.is_anonymous %}
-                                            <a class="dropdown-item" href="{{ url_for('inicio_bp.frmlogin') }}">Inicia Sesión</a>
+                                                <a class="dropdown-item" href="{{ url_for('inicio_bp.frmlogin') }}">Inicia Sesión</a>
                                             {% else %}
                                                 <a class=" btn btn-outline-dark w-100 mb-2" href="{{ url_for('inicio_bp.logout') }}">Cerrar Sesión</a>
                                             {% endif %}
