@@ -1,11 +1,27 @@
-<form method="POST" action="{{ url_for('categoria_bp.update') }}" enctype="multipart/form-data" >
-  <input type="hidden" name="txtId" id="txtId" value="{{categoria['id']}}" />
+<form 
+  method="POST" 
+  action="{{ url_for('tienda_bp.update') }}" 
+  enctype="multipart/form-data"
+>
+  <input 
+    type="hidden" 
+    name="txtId" 
+    id="txtId" 
+    value="{{tienda['id']}}" 
+  />
 
-  <div class="modal fade" id="modaledit{{categoria['id']}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{categoria['id']}}" aria-hidden="true" >
+  <div 
+    class="modal fade" 
+    id="modaledit{{tienda['id']}}" 
+    tabindex="-1" 
+    role="dialog" 
+    aria-labelledby="modaledit{{tienda_bp['id']}}" 
+    aria-hidden="true" 
+  >
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header" style="background-color: #011f4b; color: white">
-          <h4 class="modal-tittle">Editar Categoria</h4>
+          <h4 class="modal-tittle">Editar Tienda</h4>
           <br />
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" >
@@ -15,7 +31,7 @@
 
         <div class="modal-body p-2">
           <div class="row justify-content-md-center">
-            <h5 class="text-center">{{categoria['nombre']}}</h5>
+            <h5 class="text-center">{{tienda['nombre']}}</h5>
           </div>
 
           <div class="row mt-2">
@@ -23,7 +39,7 @@
               <label for="txtNombre">Nombre</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" value="{{categoria['nombre']}}" required />
+              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" value="{{tienda['nombre']}}" required />
             </div>
           </div>
         </div>
