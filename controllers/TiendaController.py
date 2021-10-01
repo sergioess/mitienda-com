@@ -50,4 +50,5 @@ def destroy(tienda_id):
     return redirect('/tienda')
     
 def create():
+    
     pass
