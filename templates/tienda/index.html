@@ -37,7 +37,14 @@
             <td>{{tienda['nombre_propietario']}}</td>
             <td>{{tienda['ciudad']}}</td>
             <td>
-
+              <td class="text-center">
+                <a class="btn btn-warning btn-sm py-0" href="#"
+                  data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" >
+                  <i class="far fa-edit"></i></a>
+                |
+                <a onclick="return confirm('Desea borrar la Tienda?')" class="btn btn-danger btn-sm py-0" href="/tienda/destroy/{{tienda['id']}}">            
+                  <i class="far fa-trash-alt"></i></a>
+              </td>
             </td>
           </tr>
           {% endfor %}

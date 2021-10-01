@@ -1,5 +1,20 @@
 {% include '/header.html' %}
 {% include '/nav2.html' %}
+
+<script type="text/javascript">
+  function Validate() {
+  var password = document.getElementById("txtPassword").value;
+  var confirmPassword = document.getElementById("txtConfirmarPassword").value;
+  if (password != confirmPassword) {
+    alert("La contraseña no coincide, favr intentar nuevamente");
+    return false;
+  }
+  return true;
+  }
+</script>
+  
+  
+
 <div class="container">
   <br />
   <div class="row justify-content-center">
