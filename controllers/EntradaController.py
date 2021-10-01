@@ -30,7 +30,7 @@ def store():
 
     nuevaEntrada = Entrada(_id_producto, _precio, date, _fecha_vencimiento, _cantidad, _proveedor)
     print (nuevaEntrada)
-    Entrada.save(nuevaEntrada)
+    nuevaEntrada.save()
     return redirect('/entrada')
     
 def show():
