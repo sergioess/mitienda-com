@@ -1,5 +1,18 @@
 {% include '/header.html' %}
 
+<script type="text/javascript">
+  function Validate() {
+  var password = document.getElementById("txtPassword").value;
+  var confirmPassword = document.getElementById("txtConfirmarPassword").value;
+  if (password != confirmPassword) {
+    alert("La contraseña no coincide, favr intentar nuevamente");
+    return false;
+  }
+  return true;
+  }
+</script>
+
+
 </head>
 
 <body style="background-color: hsl(205, 42%, 79%)">
@@ -61,7 +74,7 @@
                             </div>
 
                               
-                            <div class="d-flex flex-row ">
+                            <div class="d-flex flex-row mt-2">
                               {{ form.apellido.label }} 
                               {{ form.apellido(class_='form-control ml-2', placeholder="Apellidos del Usuario") }} 
                             </div>
@@ -71,8 +84,8 @@
                               {% endfor %}
                             </div>
 
-                            <div class="d-flex flex-row ">
-                              {{ form.correo.label(class_='text-nowrap ml-2') }} 
+                            <div class="d-flex flex-row mt-2">
+                              {{ form.correo.label(class_='text-nowrap') }} 
                               {{ form.correo(class_='form-control ml-2', placeholder="Correo Electrónico") }} 
                             </div>
                             <div class="text-right">
@@ -82,8 +95,8 @@
                             </div>
 
 
-                            <div class="d-flex flex-row ">
-                              {{ form.nombreusuario.label(class_='text-nowrap ml-2') }} 
+                            <div class="d-flex flex-row mt-2">
+                              {{ form.nombreusuario.label(class_='text-nowrap') }} 
                               {{ form.nombreusuario(class_='form-control ml-2', placeholder="NombreUsuario") }} 
                             </div>
                             <div class="text-right">
@@ -92,9 +105,9 @@
                               {% endfor %}
                             </div>
 
-                            <div class="d-flex flex-row ">
-                              {{ form.password.label(class_='text-nowrap ml-2') }} 
-                              {{ form.password(class_='form-control ml-2', placeholder="Contraseña") }} 
+                            <div class="d-flex flex-row mt-2">
+                              {{ form.password.label(class_='text-nowrap') }} 
+                              {{ form.password(class_='form-control ml-2', placeholder="Contraseña", id="txtPassword") }} 
                             </div>
                             <div class="text-right">
                               {% for error in form.password.errors %}
@@ -102,14 +115,23 @@
                               {% endfor %}
                             </div>
 
+                            <div class="d-flex flex-row mt-2">
+                              {{ form.confirmarPassword.label(class_='text-nowrap') }} 
+                              {{ form.confirmarPassword(class_='form-control ml-2', placeholder="Confirmar contraseña", id="txtConfirmarPassword") }} 
+                            </div>
+                            <div class="text-right">
+                              {% for error in form.confirmarPassword.errors %}
+                              <span style="color: red;">{{ error }}</span>
+                              {% endfor %}
+                            </div>
 
                               <div class="col-12 ">
                                   <hr>
                                   <h2 class="text-center">Datos de la Tienda</h2>
                               </div>
 
-                              <div class="d-flex flex-row ">
-                                {{ form.tienda.label(class_='text-nowrap ml-2') }} 
+                              <div class="d-flex flex-row mt-2">
+                                {{ form.tienda.label(class_='text-nowrap') }} 
                                 {{ form.tienda(class_='form-control ml-2', placeholder="Nombre de la Tienda") }} 
                               </div>
                               <div class="text-right">
@@ -118,9 +140,9 @@
                                 {% endfor %}
                               </div>
                               
-                              <div class="d-flex flex-row ">
-                                {{ form.nit.label(class_='text-nowrap ml-2') }} 
-                                {{ form.nit(class_='form-control ml-2', placeholder="Nombre de la Tienda") }} 
+                              <div class="d-flex flex-row mt-2">
+                                {{ form.nit.label(class_='text-nowrap') }} 
+                                {{ form.nit(class_='form-control ml-2', placeholder="Nit de la Tienda") }} 
                               </div>
                               <div class="text-right">
                                 {% for error in form.nit.errors %}
@@ -128,9 +150,9 @@
                                 {% endfor %}
                               </div>
                               
-                              <div class="d-flex flex-row ">
-                                {{ form.direccion.label(class_='text-nowrap ml-2') }} 
-                                {{ form.direccion(class_='form-control ml-2', placeholder="Nombre de la Tienda") }} 
+                              <div class="d-flex flex-row mt-2">
+                                {{ form.direccion.label(class_='text-nowrap') }} 
+                                {{ form.direccion(class_='form-control ml-2', placeholder="Dirección de la tienda") }} 
                               </div>
                               <div class="text-right">
                                 {% for error in form.direccion.errors %}
@@ -138,9 +160,9 @@
                                 {% endfor %}
                               </div>
                               
-                              <div class="d-flex flex-row ">
-                                {{ form.telefono.label(class_='text-nowrap ml-2') }} 
-                                {{ form.telefono(class_='form-control ml-2', placeholder="Nombre de la Tienda") }} 
+                              <div class="d-flex flex-row mt-2">
+                                {{ form.telefono.label(class_='text-nowrap') }} 
+                                {{ form.telefono(class_='form-control ml-2', placeholder="Telefono de la tienda") }} 
                               </div>
                               <div class="text-right">
                                 {% for error in form.telefono.errors %}
@@ -148,9 +170,9 @@
                                 {% endfor %}
                               </div>
 
-                              <div class="d-flex flex-row ">
-                                {{ form.ciudad.label(class_='text-nowrap ml-2') }} 
-                                {{ form.ciudad(class_='form-control ml-2', placeholder="Nombre de la Tienda") }} 
+                              <div class="d-flex flex-row mt-2">
+                                {{ form.ciudad.label(class_='text-nowrap') }} 
+                                {{ form.ciudad(class_='form-control ml-2', placeholder="Ciudad") }} 
                               </div>
                               <div class="text-right">
                                 {% for error in form.ciudad.errors %}
