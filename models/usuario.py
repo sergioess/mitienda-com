@@ -45,7 +45,11 @@ class Usuario(UserMixin,database.Model):
 
     @staticmethod
     def count_records():
-        return Usuario.query.count()      
+        return Usuario.query.count()   
+
+    @staticmethod
+    def count_records_inacticos():
+        return Usuario.query.filter_by(is_active=False).count()             
 
     @staticmethod
     def get_all_activo():

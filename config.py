@@ -13,3 +13,14 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 CARPETA_IMG = os.path.join('img')
 CARPETA_PTOS = os.path.join('uplproductos')
 
+
+MAIL_SERVER='smtp.gmail.com'
+MAIL_PORT=587
+MAIL_USERNAME = 'mitiendamintic@gmail.com'
+MAIL_PASSWORD = '3nviodeCorr3oPython'
+MAIL_USE_TLS = True
+MAIL_USE_SSL = False
+
+SESSION_TYPE = "filesystem"
+SESSION_PERMANENT = False
+

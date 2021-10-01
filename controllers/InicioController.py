@@ -1,5 +1,5 @@
-from flask import Flask
-from app import Bcrypt ,bcrypt
+from flask import Flask, session
+from app import Bcrypt ,bcrypt, mail
 
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
 from sqlalchemy import desc
@@ -10,6 +10,9 @@ from models.tienda import Tienda
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from forms import LoginForm, RegistroForm
+
+from flask_mail import  Message
+from flask_session import Session
 
 # app = Flask(__name__)
 # app.config.from_object('config')
@@ -27,7 +30,13 @@ def home():
     nitdetienda = tienda.nit
     direcciondetienda = tienda.direccion
     telefonodetienda = tienda.telefono
-    return render_template('/home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda) 
+
+    usuariosInactivos = 0
+    if Usuario.count_records_inacticos() > 0:
+        usuariosInactivos = Usuario.count_records_inacticos()
+
+
+    return render_template('/home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda, inactivos=usuariosInactivos) 
 
 def index():
     
@@ -61,8 +70,9 @@ def frmRegistrarTienda():
         print(usuario)
         usuario.save()
 
+        mailtotendero(_nombre, _apellido, _correo, _tienda)
         # if idtienda > 1:
-        return render_template("index.html", form=registroTienda)
+        return render_template("index.html")
 
     # flash('Enviando Datos', 'success')
     # else:
@@ -123,6 +133,7 @@ def logout():
     return render_template('index.html') 
     #return 'You are now logged out!'    
 
+
 def login(nombre):
  
     print(bcrypt.generate_password_hash('_password'))
@@ -139,5 +150,27 @@ def login(nombre):
     nitdetienda = tienda.nit
     direcciondetienda = tienda.direccion
     telefonodetienda = tienda.telefono
-    return render_template('home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda) 
+
+    
+    usuariosInactivos = 0
+    if Usuario.count_records_inacticos() > 0:
+        usuariosInactivos = Usuario.count_records_inacticos()
+        session['inactivos'] = usuariosInactivos
+
+    print("Usuarios Inactivos", usuariosInactivos)
+    return render_template('home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda)
     #return 'You are now logged in!'       
+
+def mailtoadmin():
+    msg = Message('Hello from the other side!', sender = 'peter@mailtrap.io', recipients = ['sergioess@hotmail.com'])
+    msg.body = "Hey Paul, sending you this email from my Flask app, lmk if it works"
+    mail.send(msg)
+    return "Message sent!"
+
+
+def mailtotendero(nombre, apellido, correo, tienda):
+    msg = Message('Tienda Inscrita', sender = 'MiTienda.com', recipients = [correo])
+    msg.body = "Estimado " + str(nombre) + " " + str(apellido) + " su tienda " + str(tienda) + " ha sido registrada. En 24 horas le llegara un mensaje de activación de cuenta.  No responder este correo."
+    mail.send(msg)
+
+    
