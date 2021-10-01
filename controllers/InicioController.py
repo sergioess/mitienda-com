@@ -34,7 +34,8 @@ def home():
     usuariosInactivos = 0
     if Usuario.count_records_inacticos() > 0:
         usuariosInactivos = Usuario.count_records_inacticos()
-
+    session['inactivos'] = usuariosInactivos
+    print("Inactivos",usuariosInactivos)
 
     return render_template('/home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda, inactivos=usuariosInactivos) 
 
@@ -99,6 +100,7 @@ def frmlogin():
 
         print(user)
         if not user:
+            session.pop('_flashes', None)
             flash(f'Usuario no encontrado en la Base de Datos!', 'danger')
             
         else:
@@ -118,6 +120,7 @@ def frmlogin():
                 return redirect(next)     
             return n       
         else:
+            session.pop('_flashes', None)
             flash(f'Inicio de Sesion incorrecto, verifique el Usuario y Contraseña!', 'danger')
 
     return render_template("login.html", form=login_form)
@@ -155,9 +158,12 @@ def login(nombre):
     usuariosInactivos = 0
     if Usuario.count_records_inacticos() > 0:
         usuariosInactivos = Usuario.count_records_inacticos()
-        session['inactivos'] = usuariosInactivos
+    
+    session['inactivos'] = usuariosInactivos
 
     print("Usuarios Inactivos", usuariosInactivos)
+    if(user.rol=="Administrador"):
+        return redirect('/usuario')    
     return render_template('home.html', totalcategoria=categoriasTotal, totalproducto=productosTotal, nombretienda = nombredetienda, nittienda = nitdetienda, direcciontienda = direcciondetienda, telefonotienda = telefonodetienda)
     #return 'You are now logged in!'       
 

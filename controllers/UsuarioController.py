@@ -5,14 +5,17 @@ from sqlalchemy import desc
 from models.usuario import Usuario
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app import Bcrypt ,bcrypt
 from flask_session import Session
 
 @login_required
 def index():
     usuariosLista = Usuario.get_all_activo()
-    
+    user = Usuario.query.filter_by(id=current_user.id).first()
+    if(user.rol!="Administrador"):
+        session.pop('_flashes', None)
+        flash(f'Ruta no autorizada', 'danger')
+        return redirect('/home')   
     #print(type(usuariosLista))
 
     #for usuario in usuariosLista:
@@ -73,7 +76,8 @@ def activar(usuario_id_usuario):
     usuariosInactivos = 0
     if Usuario.count_records_inacticos() > 0:
         usuariosInactivos = Usuario.count_records_inacticos()
-        session['inactivos'] = usuariosInactivos    
+    
+    session['inactivos'] = usuariosInactivos    
     return redirect('/usuario')    
     
 def create():
