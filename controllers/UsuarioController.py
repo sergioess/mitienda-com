@@ -27,13 +27,18 @@ def store():
     _apellidos = request.form.get('txtApellidos')
     _correo = request.form.get('txtCorreo')
     _nombre_usuario = request.form.get('txtNombre_usuario')
-    _password = bcrypt.generate_password_hash(request.form.get('txtPassword')).decode('utf-8')
+    #_password = bcrypt.generate_password_hash(request.form.get('txtPassword')).decode('utf-8')
+    #_confirmar_password = bcrypt.generate_password_hash(request.form.get('txtConfirmarPassword')).decode('utf-8')
+    _pass = request.form.get('txtPassword')
+    _confirmpass = request.form.get('txtConfirmarPassword')
     _rol = request.form.get('txtRol')
-    usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
-    usuario.activo = 1
-    usuario.id_tienda = 1
-    usuario.save()
-    return redirect('/usuario')
+    if _pass == _confirmpass:
+        _password = bcrypt.generate_password_hash(_pass).decode('utf-8')
+        usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
+        usuario.activo = 1
+        usuario.id_tienda = 1
+        usuario.save()
+        return redirect('/usuario')
 
     
 def show():

@@ -16,7 +16,7 @@
               <label for="txtNombre">Nombre</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtNombre" id="txtNombre" required />
+              <input class="form-control d-inline" type="text" name="txtNombre" placeholder="Digite nombre" id="txtNombre" required />
             </div>
           </div>
 
@@ -26,7 +26,7 @@
               <label for="txtApellidos">Apellidos</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtApellidos" id="txtApellidos" required />
+              <input class="form-control d-inline" type="text" name="txtApellidos" placeholder="Digite apellidos" id="txtApellidos" required />
             </div>
           </div>
 
@@ -36,7 +36,7 @@
               <label for="txtCorreo">Correo</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="email" name="txtCorreo" id="txtCorreo" required />
+              <input class="form-control d-inline" type="email" name="txtCorreo" placeholder="Digite correo electronico" id="txtCorreo" required />
             </div>
           </div>
 
@@ -46,17 +46,27 @@
               <label for="txtNombre_usuario">Nombre de Usuario</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="text" name="txtNombre_usuario" id="txtNombre_usuario" required />
+              <input class="form-control d-inline" type="text" name="txtNombre_usuario" placeholder="Digite nombre de usuario" id="txtNombre_usuario" required />
             </div>
           </div>
 
           <br>
           <div class="row">
             <div class="col-md">
-              <label for="txtPassword">Password</label>
+              <label for="txtPassword">Contraseña</label>
             </div>
             <div class="col-md d-inline">
-              <input class="form-control d-inline" type="password" name="txtPassword" id="txtPassword" required />
+              <input class="form-control d-inline" type="password" name="txtPassword" id="txtPassword" placeholder="Digite la contraseña" id="txtPassword" required />
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-md">
+              <label for="txtConfirmarPassword">Confirmar Contraseña</label>
+            </div>
+            <div class="col-md d-inline">
+              <input class="form-control d-inline" type="password" name="txtConfirmarPassword" id="txtConfirmarPassword" placeholder="Confirme la contraseña" id="txtPassword" required />
             </div>
           </div>
 
@@ -83,7 +93,9 @@
 
         <div class="modal-footer">
           <div class="row p-2">
-            <input class="btn btn-success" style="background-color: #011f4b;" type="submit" value="Agregar" />
+            <input class="btn btn-success" style="background-color: #011f4b;" type="submit" onclick="return Validate()"
+
+            value="Agregar" />
           </div>
         </div>
       </div>
