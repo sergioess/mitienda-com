@@ -169,8 +169,9 @@ def mailtoadmin():
 
 
 def mailtotendero(nombre, apellido, correo, tienda):
-    msg = Message('Tieda Inscrita', sender = 'MiTienda.com', recipients = [correo])
-    msg.body = "Estimado " + str(nombre) + " " + str(apellido) + " Su tienda " + str(tienda) + " ha sido registrada. En 24 horas le llevara un mensaje de activacion de cuenta."
+    msg = Message('Tienda Inscrita', sender = 'MiTienda.com', recipients = [correo])
+    msg.body = "Estimado " + str(nombre) + " " + str(apellido) + " su tienda " + str(tienda) + " ha sido registrada. En 24 horas le llegara un mensaje de activación de cuenta. 
+    No responder este correo."
     mail.send(msg)
 
     
