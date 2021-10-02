@@ -12,14 +12,13 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 @login_required
 def index():
-    tiendasLista = Tienda.get_all()
-
     user = Usuario.query.filter_by(id=current_user.id).first()
     if(user.rol!="Administrador"):
         session.pop('_flashes', None)
-        flash(f'Ruta no autorizada', 'danger')
+        flash(f'Acceso no autorizado', 'danger')
         return redirect('/home')       
  
+    tiendasLista = Tienda.get_all()
     return render_template('/tienda/index.html', tiendas=tiendasLista)
   
 

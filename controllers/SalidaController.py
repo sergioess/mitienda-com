@@ -8,7 +8,7 @@ from datetime import datetime
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-# @login_required
+@login_required
 def index():
     salidasLista = Salida.get_all()
     productosLista = Producto.get_all_activo()

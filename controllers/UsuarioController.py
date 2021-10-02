@@ -10,12 +10,14 @@ from flask_session import Session
 
 @login_required
 def index():
-    usuariosLista = Usuario.get_all_activo()
+    
     user = Usuario.query.filter_by(id=current_user.id).first()
     if(user.rol!="Administrador"):
         session.pop('_flashes', None)
-        flash(f'Ruta no autorizada', 'danger')
+        flash(f'Acceso no autorizado', 'danger')
         return redirect('/home')   
+
+    usuariosLista = Usuario.get_all_activo()
     #print(type(usuariosLista))
 
     #for usuario in usuariosLista:
