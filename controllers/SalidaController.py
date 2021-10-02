@@ -24,8 +24,15 @@ def store():
           
         nuevaSalida = Salida(_id_producto, _precio, date, _cantidad)
         #print (nuevaSalida)
-        nuevaSalida.save()
-    return redirect('/salida')
+        if nuevaSalida.save():
+            return redirect('/salida') 
+        
+        else:
+            flash(f'Stock de producto insuficiente', 'danger')
+            return redirect('/salida')
+            
+
+
 
     
     

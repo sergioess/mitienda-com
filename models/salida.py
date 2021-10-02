@@ -89,15 +89,21 @@ class Salida(database.Model):
         
    
     def save(self):
-        self.precio_total = float(self.cantidad) * float(self.precio_unit)
-        self.id_tienda = current_user.id_tienda
-        #print (self)
-        database.session.add(self)
-        database.session.commit()
-        # print(self.id_producto)
         prorductoActualiza = Producto.query.filter_by(id=self.id_producto).first()
-        prorductoActualiza.stock = prorductoActualiza.stock - self.cantidad
-        database.session.commit()
-        # print(prorductoActualiza) 
+        if float (prorductoActualiza.stock) >= float(self.cantidad) :
+
+            self.precio_total = float(self.cantidad) * float(self.precio_unit)
+            self.id_tienda = current_user.id_tienda
+            #print (self)
+            database.session.add(self)
+            database.session.commit()
+            # print(self.id_producto)
+            prorductoActualiza = Producto.query.filter_by(id=self.id_producto).first()
+            prorductoActualiza.stock = prorductoActualiza.stock - self.cantidad
+            database.session.commit()
+            # print(prorductoActualiza)
+            return True 
+        else:
+            return False
 
 
