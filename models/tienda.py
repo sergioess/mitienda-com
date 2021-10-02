@@ -22,6 +22,18 @@ class Tienda(database.Model):
         self.nombre_propietario = nombre_propietario
         self.ciudad = ciudad
 
+    def __init__(self, id):
+        self.id = id
+
+    def __init__(self, id, nombre_tienda, nit, direccion, telefono, nombre_propietario, ciudad):
+        self.id = id
+        self.nombre_tienda = nombre_tienda
+        self.nit = nit
+        self.direccion = direccion
+        self.telefono = telefono
+        self.nombre_propietario = nombre_propietario
+        self.ciudad = ciudad
+
     @staticmethod
     def get_all():
         return Tienda.query.all()
@@ -35,4 +47,23 @@ class Tienda(database.Model):
             database.session.add(self)
         database.session.commit() 
         return self.id
+    
+    def update(self):
+        tiendaActualiza = Tienda.query.filter_by(id=self.id).first()
+        tiendaActualiza.nombre_tienda = self.nombre_tienda
+        tiendaActualiza.nit = self.nit
+        tiendaActualiza.direccion = self.direccion
+        tiendaActualiza.telefono = self.telefono
+        tiendaActualiza.nombre_propietario = self.nombre_propietario
+        tiendaActualiza.ciudad = self.ciudad
+        database.session.commit()
+        return tiendaActualiza
+
+    def delete(self):
+        #print(self.id)
+        tiendaActualiza = Tienda.query.filter_by(id=self.id).first()
+        #print(categoriaActualiza)
+        tiendaActualiza.activo = 0
+        database.session.commit()
+        return 1
             

@@ -39,7 +39,7 @@ def update():
     propietario = request.form.get('txtPropietario')
     ciudad = request.form.get('txtCiudad')
     nuevaTienda = Tienda(nombre_tienda, nit, direccion, telefono, propietario, ciudad)
-    Tienda.update(tienda)
+    Tienda.update(nombre_tienda)
     return redirect('/tienda')
 
 
