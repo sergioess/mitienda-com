@@ -21,7 +21,7 @@ def index():
     # return "Hola1"
     return render_template('/categoria/index.html', categorias=categoriasLista)
   
-# @login_required
+@login_required
 def store():
     _id = request.form.get('txtId')
     _nombre = request.form.get('txtNombre')
@@ -34,7 +34,7 @@ def store():
 def show():
     pass
 
-# @login_required
+@login_required
 def update():
     _id = request.form.get('txtId')
     _nombre = request.form.get('txtNombre')

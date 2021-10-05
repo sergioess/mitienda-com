@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, session
 
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
 from sqlalchemy import desc
 from models.tienda import Tienda
+from models.usuario import Usuario
 
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
@@ -11,8 +12,13 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 @login_required
 def index():
-    tiendasLista = Tienda.get_all()
+    user = Usuario.query.filter_by(id=current_user.id).first()
+    if(user.rol!="Administrador"):
+        session.pop('_flashes', None)
+        flash(f'Acceso no autorizado', 'danger')
+        return redirect('/home')       
  
+    tiendasLista = Tienda.get_all()
     return render_template('/tienda/index.html', tiendas=tiendasLista)
   
 
@@ -32,7 +38,8 @@ def show():
 
 
 def update():
-    nombre_tienda = request.form.get('txtTienda')
+    _id = request.form.get('txtId')
+    nombre_tienda = request.form.get('txtNmbre_tienda')
     nit = request.form.get('txtNit')
     direccion = request.form.get('txtDireccion')
     telefono = request.form.get('txtTelefono')
@@ -50,4 +57,8 @@ def destroy(tienda_id):
     return redirect('/tienda')
     
 def create():
+    
     pass
+
+
+

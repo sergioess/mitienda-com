@@ -1,5 +1,6 @@
 from datetime import date
 from app import database
+from sqlalchemy import asc, desc
 
 
 class Tienda(database.Model):
@@ -36,7 +37,7 @@ class Tienda(database.Model):
 
     @staticmethod
     def get_all():
-        return Tienda.query.all()
+        return Tienda.query.order_by(asc(Tienda.id)).all()  
 
 
     def get_by_id(id):
@@ -67,3 +68,9 @@ class Tienda(database.Model):
         database.session.commit()
         return 1
             
+    def update(self, id):
+        tiendaActualiza = Tienda.query.filter_by(id=id).first()
+        tiendaActualiza.nit = self.nit
+        tiendaActualiza.telefono = self.telefono
+        database.session.commit()
+        return tiendaActualiza

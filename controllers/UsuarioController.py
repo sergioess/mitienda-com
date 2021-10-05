@@ -5,14 +5,19 @@ from sqlalchemy import desc
 from models.usuario import Usuario
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app import Bcrypt ,bcrypt
 from flask_session import Session
 
 @login_required
 def index():
-    usuariosLista = Usuario.get_all_activo()
     
+    user = Usuario.query.filter_by(id=current_user.id).first()
+    if(user.rol!="Administrador"):
+        session.pop('_flashes', None)
+        flash(f'Acceso no autorizado', 'danger')
+        return redirect('/home')   
+
+    usuariosLista = Usuario.get_all_activo()
     #print(type(usuariosLista))
 
     #for usuario in usuariosLista:
@@ -27,13 +32,18 @@ def store():
     _apellidos = request.form.get('txtApellidos')
     _correo = request.form.get('txtCorreo')
     _nombre_usuario = request.form.get('txtNombre_usuario')
-    _password = bcrypt.generate_password_hash(request.form.get('txtPassword')).decode('utf-8')
+    #_password = bcrypt.generate_password_hash(request.form.get('txtPassword')).decode('utf-8')
+    #_confirmar_password = bcrypt.generate_password_hash(request.form.get('txtConfirmarPassword')).decode('utf-8')
+    _pass = request.form.get('txtPassword')
+    _confirmpass = request.form.get('txtConfirmarPassword')
     _rol = request.form.get('txtRol')
-    usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
-    usuario.activo = 1
-    usuario.id_tienda = 1
-    usuario.save()
-    return redirect('/usuario')
+    if _pass == _confirmpass:
+        _password = bcrypt.generate_password_hash(_pass).decode('utf-8')
+        usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
+        usuario.activo = 1
+        usuario.id_tienda = 1
+        usuario.save()
+        return redirect('/usuario')
 
     
 def show():
@@ -68,7 +78,8 @@ def activar(usuario_id_usuario):
     usuariosInactivos = 0
     if Usuario.count_records_inacticos() > 0:
         usuariosInactivos = Usuario.count_records_inacticos()
-        session['inactivos'] = usuariosInactivos    
+    
+    session['inactivos'] = usuariosInactivos    
     return redirect('/usuario')    
     
 def create():

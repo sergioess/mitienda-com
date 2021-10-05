@@ -9,10 +9,9 @@
     <div class="card-header" style="background-color: #011f4b;">
       <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
         <i class="fas fa-plus-circle"></i> Nueva Tienda</a>
-      {% include '/tienda/modal/create.html' %}
-    </div>
-    <div class="table-responsive">
-      <table class="table table-light p-0 my-0">
+      </div>
+    <div class="table-responsive bg-white container pt-2">
+      <table class="table table-light p-0 my-0" id="example">
         <thead>
           <tr>
             <th>#</th>
@@ -22,31 +21,31 @@
             <th>Telefono</th>
             <th>Propietario</th>
             <th>Ciudad</th>
+            <th>Acciones</th>
           </tr>
         </thead>
 
         <tbody>
           {% for tienda in tiendas %}
-          <tr>
-            <td>{{loop.index0 + 1}}</td>
-            
-            <td>{{tienda['nombre_tienda']}}</td>
-            <td>{{tienda['nit']}}</td>
-            <td>{{tienda['direccion']}}</td>
-            <td>{{tienda['telefono']}}</td>
-            <td>{{tienda['nombre_propietario']}}</td>
-            <td>{{tienda['ciudad']}}</td>
-            <td>
+            <tr>
+              <td>{{loop.index0 + 1}}</td>
+              
+              <td>{{tienda['nombre_tienda']}}</td>
+              <td>{{tienda['nit']}}</td>
+              <td>{{tienda['direccion']}}</td>
+              <td>{{tienda['telefono']}}</td>
+              <td>{{tienda['nombre_propietario']}}</td>
+              <td>{{tienda['ciudad']}}</td>
+              
               <td class="text-center">
-                <a class="btn btn-warning btn-sm py-0" href="#"
-                  data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" >
+                <a class="btn btn-warning btn-sm py-0" href="#" data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" >
                   <i class="far fa-edit"></i></a>
                 |
                 <a onclick="return confirm('Desea borrar la Tienda?')" class="btn btn-danger btn-sm py-0" href="/tienda/destroy/{{tienda['id']}}">            
                   <i class="far fa-trash-alt"></i></a>
               </td>
-            </td>
-          </tr>
+              
+            </tr>
           {% endfor %}
         </tbody>
       </table>
@@ -55,9 +54,5 @@
   <br>
   <br>
 </div>
-
-<!-- {% for tienda in tiendas %} 
-{% include '/tienda/modal/edit.html' %}
-{% endfor %} -->
 
 {% include '/footer.html' %}

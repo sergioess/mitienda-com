@@ -1,5 +1,20 @@
 {% include '/header.html' %}
 {% include '/nav2.html' %}
+
+<script type="text/javascript">
+  function Validate() {
+  var password = document.getElementById("txtPassword").value;
+  var confirmPassword = document.getElementById("txtConfirmarPassword").value;
+  if (password != confirmPassword) {
+    alert("La contraseña no coincide, favor intentar nuevamente");
+    return false;
+  }
+  return true;
+  }
+</script>
+  
+  
+
 <div class="container">
   <br />
   <div class="row justify-content-center">
@@ -55,7 +70,7 @@
               ">            
                 <i class="far fa-trash-alt"></i></a>
                 |
-                <a onclick="return confirm('Desea activar el Usuario?')" class="btn btn-success btn-sm py-0" href="/usuario/activar/{{usuario['id']}} data-toggle="tooltip" data-placement="top" title="Activar Usuario"
+                <a onclick="return confirm('Desea activar el Usuario?')" class="btn btn-success btn-sm py-0" href="/usuario/activar/{{usuario['id']}}" data-toggle="tooltip" data-placement="top" title="Activar Usuario"
                 ">            
                   <i class="fas fa-check-circle"></i></a>                
             </td>
