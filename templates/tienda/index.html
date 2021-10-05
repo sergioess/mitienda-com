@@ -38,10 +38,12 @@
               <td>{{tienda['ciudad']}}</td>
               
               <td class="text-center">
-                <a class="btn btn-warning btn-sm py-0" href="#" data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" >
+                <a class="btn btn-warning btn-sm py-0" href="#" data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" data-toggle="tooltip" data-placement="top" title="Actualizar tienda"
+                >
                   <i class="far fa-edit"></i></a>
                 |
-                <a onclick="return confirm('Desea borrar la Tienda?')" class="btn btn-danger btn-sm py-0" href="/tienda/destroy/{{tienda['id']}}">            
+                <a onclick="return confirm('Desea borrar la Tienda?')" class="btn btn-danger btn-sm py-0" href="/tienda/destroy/{{tienda['id']}}" data-toggle="tooltip" data-placement="top" title="Eliminar tienda"
+                >            
                   <i class="far fa-trash-alt"></i></a>
               </td>
               
@@ -54,5 +56,11 @@
   <br>
   <br>
 </div>
+
+
+{% for tienda in tiendas %} 
+{% include '/tienda/modal/edit.html' %}
+{% endfor %}
+
 
 {% include '/footer.html' %}

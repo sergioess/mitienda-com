@@ -18,7 +18,7 @@ def index():
         flash(f'Acceso no autorizado', 'danger')
         return redirect('/home')       
  
-    tiendasLista = Tienda.get_all()
+    tiendasLista = Tienda.get_all_activo()
     return render_template('/tienda/index.html', tiendas=tiendasLista)
   
 
@@ -46,14 +46,12 @@ def update():
     propietario = request.form.get('txtPropietario')
     ciudad = request.form.get('txtCiudad')
     nuevaTienda = Tienda(nombre_tienda, nit, direccion, telefono, propietario, ciudad)
-    Tienda.update(nombre_tienda)
+    nuevaTienda.update(_id)
     return redirect('/tienda')
 
 
 def destroy(tienda_id):
-    
-    tienda = Tienda(tienda_id,'Elimina')
-    Tienda.delete(tienda)
+    Tienda.delete(tienda_id)
     return redirect('/tienda')
     
 def create():
