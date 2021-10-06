@@ -47,7 +47,7 @@ class Categoria(database.Model):
     @staticmethod
     def get_by_id(self):
         
-        return Categoria.query.filter_by(id=self.id).first    
+        return Categoria.query.filter_by(id=self.id).first()
 
 
     def save(self):
