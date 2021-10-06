@@ -42,9 +42,12 @@ def store():
         usuario = Usuario(_id_usuario,_nombre, _apellidos, _correo, _nombre_usuario, _password, _rol)
         usuario.activo = 1
         usuario.id_tienda = 1
-        usuario.save()
-        return redirect('/usuario')
-
+        if usuario.save():
+            return redirect('/usuario')
+        else:
+            session.pop('_flashes', None)
+            flash(f'El usuario ya existe en la base de datos, por favor digite otro nombre', 'danger')
+            return redirect('/usuario')
     
 def show():
     pass
