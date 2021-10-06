@@ -9,8 +9,7 @@
     <div class="card-header" style="background-color: #011f4b;">
       <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
         <i class="fas fa-plus-circle"></i> Nueva Tienda</a>
-      <!-- {% include '/tienda/modal/create.html' %} -->
-    </div>
+      </div>
     <div class="table-responsive bg-white container pt-2">
       <table class="table table-light p-0 my-0" id="example">
         <thead>
@@ -39,10 +38,12 @@
               <td>{{tienda['ciudad']}}</td>
               
               <td class="text-center">
-                <a class="btn btn-warning btn-sm py-0" href="#" data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" >
+                <a class="btn btn-warning btn-sm py-0" href="#" data-toggle="modal"  data-target="#modaledit{{tienda['id']}}" data-toggle="tooltip" data-placement="top" title="Actualizar tienda"
+                >
                   <i class="far fa-edit"></i></a>
                 |
-                <a onclick="return confirm('Desea borrar la Tienda?')" class="btn btn-danger btn-sm py-0" href="/tienda/destroy/{{tienda['id']}}">            
+                <a onclick="return confirm('Desea borrar la Tienda?')" class="btn btn-danger btn-sm py-0" href="/tienda/destroy/{{tienda['id']}}" data-toggle="tooltip" data-placement="top" title="Eliminar tienda"
+                >            
                   <i class="far fa-trash-alt"></i></a>
               </td>
               
@@ -56,8 +57,10 @@
   <br>
 </div>
 
-{% for tienda in tiendas %}
+
+{% for tienda in tiendas %} 
 {% include '/tienda/modal/edit.html' %}
 {% endfor %}
+
 
 {% include '/footer.html' %}
