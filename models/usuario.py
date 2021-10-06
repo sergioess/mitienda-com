@@ -98,3 +98,15 @@ class Usuario(UserMixin,database.Model):
         usuarioActualiza = Usuario.query.filter_by(id=id).first()
         usuarioActualiza.is_active = True
         database.session.commit()
+
+    @staticmethod
+    def get_all_inactivo():
+        usuarioInactivos = Usuario.query.filter_by(activo=0)
+        return usuarioInactivos
+
+    @staticmethod
+    def activa_user(idbuscar):
+        user = Usuario.query.filter_by(id=idbuscar).first()
+        user.activo= 1
+        database.session.commit()
+

@@ -108,4 +108,4 @@ class Producto(database.Model):
 
     #con este se filtra para obtener una búsqueda
     def get_by_id(id):
-        return Producto.query.filter_by(id=id).firts
+        return Producto.query.filter_by(id=id).first()
