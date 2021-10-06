@@ -36,16 +36,10 @@
   </div>
   <div class="border border-dark border-2 p-0">
     <div class="card-header" style="background-color: #011f4b;">
-      <div class="d-flex justify-content-between">
-        <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
-          <i class="fas fa-plus-circle"></i> Nuevo Usuario</a>
-        {% include '/usuario/modal/create.html' %}
-        <a class="btn btn-light btn-md" href="{{ url_for('usuario_bp.inactivo') }} ">
-          <i class="fas fa-eye"></i> Ver Usuarios Inactivos</a>
-
+      <a class="btn btn-light btn-md" href="#" data-toggle="modal" data-target="#modalcreate">
+        <i class="fas fa-plus-circle"></i> Nuevo Usuario</a>
+      {% include '/usuario/modal/create.html' %}
       </div>
-      
-    </div>
     <div class="table-responsive bg-white container pt-2">
 
     
@@ -86,13 +80,11 @@
                 >
                 <i class="far fa-edit"></i></a>
               |
-              <a onclick="return confirm('Desea borrar el Usuario?')" class="btn btn-danger btn-sm py-0" href="/usuario/destroy/{{usuario['id']}} data-toggle="tooltip" data-placement="top" title="Eliminar Usuario"
+              <a onclick="return confirm('Desea activar el Usuario?')" class="btn btn-primary btn-sm py-0" href="/usuario/activar_user/{{usuario['id']}}" data-toggle="tooltip" data-placement="top" title="Activar Usuario"
               ">            
-                <i class="far fa-trash-alt"></i></a>
-                |
-                <a onclick="return confirm('Desea activar el Usuario?')" class="btn btn-success btn-sm py-0" href="/usuario/activar/{{usuario['id']}}" data-toggle="tooltip" data-placement="top" title="Activar Usuario"
-                ">            
-                  <i class="fas fa-check-circle"></i></a>                
+              <i class="fas fa-eye"></i></a>
+                
+                
             </td>
           </tr>
           {% endfor %}

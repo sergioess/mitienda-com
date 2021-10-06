@@ -87,3 +87,16 @@ def activar(usuario_id_usuario):
     
 def create():
     pass
+
+@login_required
+def inactivo():
+    #print("Ingresamos a Inactivo")
+    lista_usuarios_inac=Usuario.get_all_inactivo()
+    return render_template('/usuario/inactivos.html', usuarios=lista_usuarios_inac)
+
+@login_required
+def activar_user(usuario_id_usuario):
+    Usuario.activa_user(usuario_id_usuario)
+    lista_usuarios_inac=Usuario.get_all_inactivo()
+    return render_template('/usuario/inactivos.html', usuarios=lista_usuarios_inac)
+
