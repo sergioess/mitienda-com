@@ -11,8 +11,8 @@ class Usuario(UserMixin,database.Model):
     id = database.Column(database.Integer, primary_key=True)
     nombre = database.Column(database.String(50), nullable=False)
     apellidos = database.Column(database.String(50), nullable=False)
-    correo = database.Column(database.String(50), nullable=False)
-    nombre_usuario = database.Column(database.String(20), nullable=False)
+    correo = database.Column(database.String(50), unique=True, nullable=False)
+    nombre_usuario = database.Column(database.String(20), unique=True, nullable=False)
     password = database.Column(database.String(20), nullable=False)
     id_tienda = database.Column(database.Integer, nullable=False)
     activo = database.Column(database.Integer, nullable=False)
@@ -56,13 +56,21 @@ class Usuario(UserMixin,database.Model):
         return Usuario.query.filter_by(activo=1).order_by(asc(Usuario.id))   
 
     def get_by_id(id):
-        return Usuario.query.filter_by(id=id).firts
+        return Usuario.query.filter_by(id=id).first()
     
     def save(self):
         if not self.id:
-            self.is_active=False
-            database.session.add(self)
-        database.session.commit()
+            usuario_existente = Usuario.query.filter_by(nombre_usuario=self.nombre_usuario).first()
+            #print(usuario_existente.nombre)
+            if usuario_existente is not None:
+                print("Usuario ya existe en la base de datos")
+                return False
+            else:
+                print("Usuario nuevo")
+                self.is_active=False
+                database.session.add(self)
+                database.session.commit()
+                return True
 
 
     def update(self):
