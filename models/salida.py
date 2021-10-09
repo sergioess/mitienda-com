@@ -30,7 +30,7 @@ class Salida(database.Model):
 
 
     def __str__(self):
-        return f"<Entrada {self.id_salidas} {self.precio_unit} {self.fecha} {self.cantidad} {self.id_producto} >"        
+        return f"<Salida {self.id_salidas} {self.precio_unit} {self.fecha} {self.cantidad} {self.id_producto} >"        
 
     @staticmethod
     def get_all():
@@ -45,13 +45,13 @@ class Salida(database.Model):
 
 
     def get_by_id(id):
-        return Salida.query.filter_by(id=id).firts       
+        return Salida.query.filter_by(id=id).first()       
 
 
     def get_by_id(id):
-        return Salida.query.filter_by(id_salidas=id).firts    
+        return Salida.query.filter_by(id_salidas=id).first()    
 
-    @staticmethod
+    # @staticmethod
     def update(self, id):
         nuevaCantidad = self.cantidad
         salidaActualiza = Salida.query.filter_by(id_salidas=id).first()
@@ -76,10 +76,10 @@ class Salida(database.Model):
         return salidaActualiza
 
     @staticmethod
-    def delete(self):
+    def delete(id):
         # print(self.id_producto)
-        salidaActualiza = Salida.query.filter_by(id_salidas=self.id_producto).first()
-        print(salidaActualiza)
+        salidaActualiza = Salida.query.filter_by(id_salidas=id).first()
+        #print(salidaActualiza)
         database.session.delete(salidaActualiza)
         database.session.commit()
         

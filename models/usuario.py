@@ -110,3 +110,11 @@ class Usuario(UserMixin,database.Model):
         user.activo= 1
         database.session.commit()
 
+    @staticmethod
+    def validarUsuario(nombreUsuario):
+        usuario_existente = Usuario.query.filter_by(nombre_usuario=nombreUsuario).first()
+        if usuario_existente is not None:
+            print("Usuario ya existe en la base de datos")
+            return False
+        else:
+            return True

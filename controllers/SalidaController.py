@@ -42,23 +42,21 @@ def show():
 # @login_required
 def update():
     _id = request.form.get('txtId')
-    _id_producto = request.form.get('txtProducto')
+    _idproducto = request.form.get('txtIdProducto')
     _precio_unit = request.form.get('txtPrecio')
     _fecha = request.form.get('txtFecha')
     _cantidad = request.form.get('txtCantidad')
-    salida = Salida(_id_producto,_precio_unit,_fecha,_cantidad)
-    # print(salida)
+    salida = Salida(_idproducto,_precio_unit,_fecha,_cantidad)
+    #print("Id Salida -> ", _id)
+    #print("Id Producto -> ", _idproducto)
+    #print(salida)
     salida.update(_id)
     return redirect('/salida')
 
 # @login_required
 def destroy(salida_id):
-    print(salida_id)
-    salida = Salida(salida_id, 10, "13/12/2021", 0)
-    print(salida)
-    salida.delete()
-    # Salida.activo = 0
-    # Salida.save()
+    #print(salida_id)
+    Salida.delete(salida_id)
     return redirect('/salida')
     
 def create():

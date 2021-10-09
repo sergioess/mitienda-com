@@ -45,18 +45,18 @@ class Producto(database.Model):
         # productos = database.session.query(Producto, Categoria).join(Categoria).order_by(asc(Producto.id)).all()
         productos = Producto.query.all()
         # print(productos)
-        print(
-            select(Producto.id, Producto.nombre, Categoria.nombre).
-            select_from(Producto).
-            join(Categoria)
-        )
+        # print(
+        #     select(Producto.id, Producto.nombre, Categoria.nombre).
+        #     select_from(Producto).
+        #     join(Categoria)
+        # )
         stmt = (
             select(Producto.id, Producto.nombre, Categoria.nombre).
             select_from(Producto).
             join(Categoria))
         prueba = database.session.execute(stmt).all()
-        for producto in prueba:
-            print(producto)
+        # for producto in prueba:
+            # print(producto)
         return productos
 
     # con este obtenemos toda la info que hay
@@ -101,10 +101,18 @@ class Producto(database.Model):
 
     # este es para guardar un nuevo registro
     def save(self):
-        self.tienda_id = current_user.id_tienda
-        print(self)
-        database.session.add(self)
-        database.session.commit()
+
+        productoExistente = Producto.query.filter_by(nombre=self.nombre).filter_by(tienda_id=current_user.id_tienda).first()
+        if productoExistente is not None:
+            print("Producto ya existe en la base de datos")
+            return False
+        else:
+            print("Nuevo Producto")
+            self.tienda_id = current_user.id_tienda
+            print(self)
+            database.session.add(self)
+            database.session.commit()
+            return True
 
     #con este se filtra para obtener una búsqueda
     def get_by_id(id):

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,session
 from flask import config, render_template, redirect, url_for, request, abort, flash, jsonify
 from models.categoria import Categoria
 from models.producto import Producto
@@ -6,6 +6,9 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from datetime import datetime
 import sys
 import os
+from flask_session import Session
+
+
 app = Flask(__name__)
 app.config.from_object('config')
 
@@ -37,9 +40,12 @@ def store():
    
     producto = Producto(_nombre, _referencia, _costo, _precio_venta, 1, 0, _categoria, nuevoNombreFoto )
     print(producto)
-    producto.save()
-    return redirect('/producto')
-    
+    if producto.save():
+        return redirect('/producto')
+    else:
+        session.pop('_flashes', None)
+        flash(f'El Producto ya existe en la base de datos, por favor digite otro nombre', 'danger')
+        return redirect('/producto')        
 def show():
     pass
 

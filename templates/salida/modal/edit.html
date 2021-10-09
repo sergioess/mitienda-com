@@ -1,5 +1,6 @@
 <form method="POST" action="{{ url_for('salida_bp.update') }}" enctype="multipart/form-data" >
   <input type="hidden" name="txtId" id="txtId" value="{{salida.Salida.id_salidas}}" />
+  <input type="hidden" name="txtIdProducto" id="txtIdProducto" value="{{salida.Salida.id_producto}}" />
   <input type="hidden" name="txtFecha" id="txtFecha" value="{{salida.Salida.fecha}}" />
 
   <div class="modal fade" id="modaledit{{salida.Salida.id_salidas}}" tabindex="-1" role="dialog" aria-labelledby="modaledit{{salida.Salida.id_salidas}}" aria-hidden="true">

@@ -52,27 +52,34 @@ def frmRegistrarTienda():
         _apellido = registroTienda.apellido.data
         _correo = registroTienda.correo.data
         _nombreusuario = registroTienda.nombreusuario.data
-        _password = bcrypt.generate_password_hash(registroTienda.password.data).decode('utf-8')
-        _tienda = registroTienda.tienda.data
-        _nit = registroTienda.nit.data
-        _direccion = registroTienda.direccion.data
-        _telefono = registroTienda.telefono.data
-        _ciudad = registroTienda.ciudad.data
-        _propietario = str(_nombre) + str(_apellido)
-        _id_usuario = request.form.get('txtId')
 
-        nuevaTienda = Tienda(_tienda, _nit, _direccion, _telefono, _propietario, _ciudad)
-        print(nuevaTienda)
-        idtienda = nuevaTienda.save()
+        if Usuario.validarUsuario(_nombreusuario):
+            
+            _password = bcrypt.generate_password_hash(registroTienda.password.data).decode('utf-8')
+            _tienda = registroTienda.tienda.data
+            _nit = registroTienda.nit.data
+            _direccion = registroTienda.direccion.data
+            _telefono = registroTienda.telefono.data
+            _ciudad = registroTienda.ciudad.data
+            _propietario = str(_nombre) + str(_apellido)
+            _id_usuario = request.form.get('txtId')
 
-        usuario = Usuario(_id_usuario,_nombre, _apellido, _correo, _nombreusuario, _password, "Tendero")
-        usuario.activo = 1
-        usuario.id_tienda = idtienda
-        print(usuario)
-        usuario.save()
+            nuevaTienda = Tienda(_tienda, _nit, _direccion, _telefono, _propietario, _ciudad)
+            print(nuevaTienda)
+            idtienda = nuevaTienda.save()
 
-        mailtotendero(_nombre, _apellido, _correo, _tienda)
+            usuario = Usuario(_id_usuario,_nombre, _apellido, _correo, _nombreusuario, _password, "Tendero")
+            usuario.activo = 1
+            usuario.id_tienda = idtienda
+            print(usuario)
+            usuario.save()
+
+            mailtotendero(_nombre, _apellido, _correo, _tienda)
         # if idtienda > 1:
+        else:
+            session.pop('_flashes', None)
+            flash(f'El usuario ya existe en la base de datos, por favor digite otro nombre', 'danger')
+            return redirect('/frmregistro')
         return render_template("index.html")
 
     # flash('Enviando Datos', 'success')
